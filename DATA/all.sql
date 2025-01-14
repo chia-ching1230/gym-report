@@ -299,7 +299,22 @@ select * from member_auth;
 select * from member_profile;
 select * from member_basic;
 
+ALTER TABLE member_profile
+DROP FOREIGN KEY member_profile_ibfk_1;
 
+ALTER TABLE member_auth
+DROP FOREIGN KEY member_auth_ibfk_1;
+
+ALTER TABLE member_profile
+ADD CONSTRAINT member_profile_ibfk_1
+FOREIGN KEY (member_id) REFERENCES member_basic(member_id) ON DELETE CASCADE;
+
+ALTER TABLE member_auth
+ADD CONSTRAINT member_auth_ibfk_1
+FOREIGN KEY (member_id) REFERENCES member_basic(member_id) ON DELETE CASCADE;
+
+SHOW CREATE TABLE member_profile;
+SHOW CREATE TABLE member_auth;
 
 CREATE TABLE Products (
     id INT AUTO_INCREMENT PRIMARY KEY,           -- 主鍵
