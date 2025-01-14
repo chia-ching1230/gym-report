@@ -29,7 +29,7 @@ if ($totalRows > 0) {
     $sql = sprintf("SELECT *
     FROM coaches
     %s
-    ORDER BY coach_id
+    ORDER BY coach_id DESC
     LIMIT %s, %s", $where, ($page - 1) * $perPage, $perPage);
     $rows = $pdo->query($sql)->fetchAll();
 }

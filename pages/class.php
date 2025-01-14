@@ -31,7 +31,7 @@ if ($totalRows > 0) {
 FROM courses
 JOIN coaches ON courses.coach_id = coaches.coach_id
 WHERE coaches.status = 'active'
-ORDER BY course_id
+ORDER BY course_id DESC
 LIMIT %s, %s", ($page - 1) * $perPage, $perPage);
   $rows = $pdo->query($sql)->fetchAll();
 }
@@ -44,10 +44,21 @@ LIMIT %s, %s", ($page - 1) * $perPage, $perPage);
 
 
 <div class="card">
-  <div class="container">
-    <div class="row mt-4">
-      <div class="col">
-        <nav aria-label="Page navigation example">
+<div class="row">
+        <div class="col-10">
+            <h4 class="card-header">課程列表</h4>
+        </div>
+        <div class="col-2 card-header d-flex align-items-center justify-content-center">
+            <a href="class-add.php" class="nav-link">
+                <span class="d-none d-sm-block">
+                    <i class="fa-solid fa-square-plus fa-xl mx-3"></i>新增課程</span>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <!-- 分頁 -->
+        <div class="col-lg-8 mx-5 "> <div class="demo-inline-spacing">        
+          <nav aria-label="Page navigation example">
           <ul class="pagination">
             <li class="page-item <?= $page == 1 ? 'disabled' : '' ?>">
               <a class="page-link" href="?page=1">
@@ -83,7 +94,7 @@ LIMIT %s, %s", ($page - 1) * $perPage, $perPage);
           </ul>
         </nav>
       </div>
-      <h5 class="card-header">課程列表</h5>
+      </div>
       <div class="table-responsive text-nowrap">
         <table class="table table-hover">
           <thead>

@@ -49,27 +49,27 @@ INSERT INTO `courses` (`course_id`, `course_name`, `course_description`, `coach_
 CREATE TABLE `coaches` (
   `coach_id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `name` varchar(100)  NOT NULL,
+  `coach_number` varchar(100)  NOT NULL,
   `specialty` varchar(255)  DEFAULT NULL,
   `email` varchar(255) NOT NULL,
   `phone` varchar(20) DEFAULT NULL,
   `profile_image` varchar(255)  DEFAULT NULL,
   `bio` text,
   `status` enum('active','inactive') DEFAULT'active',
-  `coach_number` varchar(100)  NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
-INSERT INTO coaches (coach_id, name, specialty, email, phone, profile_image, bio, status, coach_number) VALUES
-(1, '張育瑄', '瑜珈,皮拉提斯', 'yuhsuan.chang@email.com', '0912-345-678', 'coach1.jpg', '專業瑜珈教練，擁有10年教學經驗，專精於初學者指導與體態調整。', 'active', 'C001'),
-(2, '林明宏', '重量訓練,核心訓練', 'minghong.lin@email.com', '0923-456-789', 'coach2.jpg', '資深健身教練，擅長制定個人化訓練計畫，協助學員達成健身目標。', 'active', 'C002'),
-(3, '王雅婷', '舞蹈,有氧運動', 'yating.wang@email.com', '0934-567-890', 'coach3.jpg', '專業舞蹈老師，教學風格活潑生動，善於帶動課堂氣氛。', 'active', 'C003'),
-(4, '李志豪', '功能性訓練,肌力訓練', 'zhihao.lee@email.com', '0945-678-901', 'coach4.jpg', '運動科學碩士，專注於姿勢矯正與功能性訓練指導。', 'active', 'C004'),
-(5, '陳思穎', '瑜珈,冥想', 'siying.chen@email.com', '0956-789-012', 'coach5.jpg', '具有多年靜心冥想教學經驗，專注於心靈療癒與壓力管理。', 'active', 'C005'),
-(6, '吳建志', '伸展,體態調整', 'jianzhi.wu@email.com', '0967-890-123', 'coach6.jpg', '物理治療師背景，專精於身體評估與矯正運動設計。', 'active', 'C006'),
-(7, '許雅琪', '皮拉提斯,核心訓練', 'yaqi.xu@email.com', '0978-901-234', 'coach7.jpg', '美國皮拉提斯認證教練，專精於產後恢復與體態雕塑。', 'active', 'C007'),
-(8, '黃志偉', '重量訓練,體能訓練', 'zhiwei.huang@email.com', '0989-012-345', 'coach8.jpg', '前職業運動員，擅長運動表現提升與體能訓練規劃。', 'inactive', 'C008'),
-(9, '楊曉君', '舞蹈,彈力帶訓練', 'xiaojun.yang@email.com', '0990-123-456', 'coach9.jpg', '專業舞者出身，結合舞蹈與體適能訓練的創新課程設計。', 'active', 'C009'),
-(10, '蔡明達', '瑜珈,平衡訓練', 'mingda.tsai@email.com', '0901-234-567', 'coach10.jpg', '資深瑜珈教練，專注於體式調整與呼吸技巧指導。', 'active', 'C010');
+INSERT INTO coaches (coach_id, name, coach_number, specialty, email, phone, profile_image, bio, status) VALUES
+(1, '張育瑄', 'C25001', '瑜珈,皮拉提斯', 'yuhsuan.chang@email.com', '0912-345-678', 'coach1.jpg', '專業瑜珈教練，擁有10年教學經驗，專精於初學者指導與體態調整。', 'active'),
+(2, '林明宏', 'C25002', '重量訓練,核心訓練', 'minghong.lin@email.com', '0923-456-789', 'coach2.jpg', '資深健身教練，擅長制定個人化訓練計畫，協助學員達成健身目標。', 'active'),
+(3, '王雅婷', 'C25003', '舞蹈,有氧運動', 'yating.wang@email.com', '0934-567-890', 'coach3.jpg', '專業舞蹈老師，教學風格活潑生動，善於帶動課堂氣氛。', 'active'),
+(4, '李志豪', 'C25004', '功能性訓練,肌力訓練', 'zhihao.lee@email.com', '0945-678-901', 'coach4.jpg', '運動科學碩士，專注於姿勢矯正與功能性訓練指導。', 'active'),
+(5, '陳思穎', 'C25005', '瑜珈,冥想', 'siying.chen@email.com', '0956-789-012', 'coach5.jpg', '具有多年靜心冥想教學經驗，專注於心靈療癒與壓力管理。', 'active'),
+(6, '吳建志', 'C25006', '伸展,體態調整', 'jianzhi.wu@email.com', '0967-890-123', 'coach6.jpg', '物理治療師背景，專精於身體評估與矯正運動設計。', 'active'),
+(7, '許雅琪', 'C25007', '皮拉提斯,核心訓練', 'yaqi.xu@email.com', '0978-901-234', 'coach7.jpg', '美國皮拉提斯認證教練，專精於產後恢復與體態雕塑。', 'active'),
+(8, '黃志偉', 'C25008', '重量訓練,體能訓練', 'zhiwei.huang@email.com', '0989-012-345', 'coach8.jpg', '前職業運動員，擅長運動表現提升與體能訓練規劃。', 'inactive'),
+(9, '楊曉君', 'C25009', '舞蹈,彈力帶訓練', 'xiaojun.yang@email.com', '0990-123-456', 'coach9.jpg', '專業舞者出身，結合舞蹈與體適能訓練的創新課程設計。', 'active'),
+(10, '蔡明達', 'C25010', '瑜珈,平衡訓練', 'mingda.tsai@email.com', '0901-234-567', 'coach10.jpg', '資深瑜珈教練，專注於體式調整與呼吸技巧指導。', 'active');
 
 
 

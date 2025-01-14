@@ -26,8 +26,13 @@ if (empty($r)) {
 <?php include __DIR__ . '/includes/html-layout-navbar.php'; ?>
 <?php include __DIR__ . '/includes/html-content wrapper-start.php'; ?>
 
-<div class="card mb-6">
-    <h5 class="card-header">修改課程</h5>
+<div class="col-xxl">
+    <div class="card mb-6">
+      <div class="card-header d-flex align-items-center justify-content-between">
+        <h5 class="mb-0">修改課程資料</h5> 
+        <small class="text-muted float-end"> <a href="class.php" class="nav-link">回到課程列表</a>
+        </small>
+      </div>
     <div class="card-body">
         <form onsubmit="sendData(event)">
             <input type="hidden" name="course_id" value="<?= $r['course_id'] ?>">
@@ -94,7 +99,9 @@ if (empty($r)) {
             <button type="submit" class="btn rounded-pill btn-primary float-end">修改</button>
         </form>
     </div>
-    <!-- Modal -->
+    </div>
+    </div>
+        <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

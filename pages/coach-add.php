@@ -29,8 +29,13 @@ $next_number = 'C' . $next_num;
 </style>
 <?php include __DIR__ . '/includes/html-content wrapper-start.php'; ?>
 
-<div class="card mb-6">
-    <h5 class="card-header">新增教練資料</h5>
+<div class="col-xxl">
+    <div class="card mb-6">
+      <div class="card-header d-flex align-items-center justify-content-between">
+        <h5 class="mb-0">新增教練</h5> 
+        <small class="text-muted float-end"> <a href="coach.php" class="nav-link">回到教練列表</a>
+        </small>
+      </div>
     <div class="card-body">
         <form onsubmit="sendData(event)">
             <div class="mb-4 row">
@@ -80,6 +85,8 @@ $next_number = 'C' . $next_num;
             <button type="submit" class="btn rounded-pill btn-primary float-end">新增</button>
         </form>
     </div>
+    </div> 
+</div>
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
