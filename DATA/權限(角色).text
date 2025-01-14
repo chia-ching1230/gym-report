@@ -1,0 +1,20 @@
+權限(角色)
+
+rule
+
+admin C R U D member
+admin C R U D order
+教練 X R X X member
+
+
+account_rule
+
+
+select * from rule where type = 'admin'
+
+
+老師建議：
+編輯跟檢視要寫一起
+權限建資料表
+用ifelse在某個地方判斷要不要顯示
+
