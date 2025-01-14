@@ -3,7 +3,7 @@
 $title = "會員管理";
 $pageName = "gymMember";
 
-$perPage = 10;
+$perPage = 15;
 $page = isset($_GET["page"]) ? intval($_GET["page"]) : 1;
 if ($page < 1) {
     header("Location:gymMember.php");
@@ -138,6 +138,42 @@ $totalPages = ceil($totalRows / $perPage);
             </tbody>
         </table>
     </div>
+    <div class="row">
+        <div class="col-lg-12 mx-5">
+            <div class="demo-inline-spacing">
+                <!-- Basic Pagination -->
+                <nav aria-label="Page navigation ">
+                    <ul class="pagination">
+                        <li class="page-item first" <?= $page == 1 ? 'disabled' : '' ?>>
+                            <a class="page-link" href="?page=1"><i class="tf-icon bx bx-chevrons-left bx-sm"></i></a>
+                        </li>
+                        <li class="page-item prev <?= $page == 1 ? 'disabled' : '' ?>">
+                            <a class="page-link" href="?page=<?= $page - 1 ?>">
+                                <i class="tf-icon bx bx-chevron-left bx-sm"></i>
+                            </a>
+                        </li>
+
+                        <?php for ($i = 1; $i <= $totalPages; $i++):
+                            $qs = array_filter($_GET);
+                            $qs['page'] = $i ?>
+                            <li class="page-item <?= $page == $i ? 'active' : '' ?> ">
+                                <a class="page-link" href="?<?= http_build_query($qs) ?>"><?= $i ?></a>
+                            </li>
+                        <?php endfor; ?>
+
+                        <li class="page-item next <?= $page == $totalPages ? 'disabled' : '' ?>">
+                            <a class="page-link" href="?page=<?= $page + 1 ?>"><i class="tf-icon bx bx-chevron-right bx-sm"></i></a>
+                        </li>
+                        <li class="page-item last" <?= $page == $totalPages ? 'disabled' : '' ?>>
+                            <a class="page-link" href="?page=<?= $totalPages ?>"><i class="tf-icon bx bx-chevrons-right bx-sm"></i></a>
+                        </li>
+                    </ul>
+                </nav>
+                <!--/ Basic Pagination -->
+            </div>
+        </div>
+    </div>
+
 </div>
 <!-- modal delete -->
 <div class="modal fade" tabindex="-1" style="display: none;" aria-hidden="true" id="delete-modal">
