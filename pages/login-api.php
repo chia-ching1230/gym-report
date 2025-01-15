@@ -27,7 +27,7 @@ if(empty($row)){
     echo json_encode($output);
     exit;
 }
-if(!password_verify($password, $row['admin_password_hash()'])){
+if(!password_verify($password, $row['admin_password_hash'])){
     $output['code']=420;
     echo json_encode($output);
     exit;

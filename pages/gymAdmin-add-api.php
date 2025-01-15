@@ -12,29 +12,21 @@ $output = [
 
 
 $sql = "INSERT INTO `gym_admin`
-    (`admin_name`,`email`,`admin_password`,`admin_role`,`admin_code`)
+    (`admin_name`,`email`,`admin_password_hash`,`admin_role`,`admin_code`)
     VALUE (?,?,?,?,?)";
+$hashedPassword = password_hash($_POST['admin_password'], PASSWORD_BCRYPT);
 
-
-$stmt1 = $pdo->prepare($sql_basic);
+$stmt1 = $pdo->prepare($sql);
 $stmt1->execute([
-    $_POST['member_name'],
-    $_POST['birthday'],
-    $_POST['gender'],
-    $_POST['phone'],
-    $_POST['address']
-]);
-
-$admin_id = $pdo->lastInsertId();
-$hashedPassword = password_hash($_POST['member_password'], PASSWORD_BCRYPT);
-$sql_auth = "INSERT INTO `member_auth`
-(`member_id`,`email`, `member_password`) 
-VALUES (?,?,?)";
-
-$stmt2 = $pdo->prepare($sql_auth);
-$stmt2->execute([
-    $member_id,
+    $_POST['admin_name'],
     $_POST['email'],
-    $hashedPassword
-
+    $hashedPassword,
+    $_POST['admin_role'],
+    $_POST['admin_code']
 ]);
+
+// $admin_id = $pdo->lastInsertId();
+$output['success'] = !!$stmt1->rowCount();
+$output['lastInsertId'] = $pdo->lastInsertId();
+echo json_encode($output, JSON_UNESCAPED_UNICODE);
+
