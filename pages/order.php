@@ -16,35 +16,39 @@ if ($page < 1) {
   header('Location: order.php'); 
   exit; 
 }
-// 這段 PHP 語法的作用是用來處理關鍵字篩選條件，會根據用戶提供的關鍵字，生成對 order_id 或 total_amount 進行模糊查詢的 SQL 條件，實現篩選功能
-// $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
-// $where =" WHERE 1 ";
-// if($keyword){
-//   $keyword_ = $pdo->quote("%{$keyword}%"); 
-//   echo $keyword_;
-//   $where .= " AND (order_id LIKE $keyword_ OR total_amount LIKE $keyword_)";
-// }
 
-/*SELECT count(*) FROM orders $where：從 orders 資料表中，計算符合 $where 條件的總筆數。
-$where 是前面生成的篩選條件（如關鍵字篩選）。*/
+$keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
+$where =" WHERE 1 ";
+if($keyword){
+  $keyword_ = $pdo->quote("%{$keyword}%"); 
+  echo $keyword_;
+  $where .= " AND (order_id LIKE $keyword_ OR total_amount LIKE $keyword_)";
+}
+
 $t_sql = "SELECT count(*) FROM orders $where";
 $totalRows = $pdo->query($t_sql)->fetch(PDO::FETCH_NUM)[0]; 
 
-// 如果有資料，進行分頁查詢
+
 if($totalRows>0){
-  
+  // if($page > $totalPages){
+  //     header('Location:?page='.$totalPages);
+  //     exit;
+  // }
   $sql = sprintf("SELECT * FROM `orders` %s
   LIMIT %s, %s", $where,
   ($page -1) * $perPage,
   $perPage);
   $rows = $pdo->query($sql)->fetchAll();
 }
-//計算總頁數
+
 $totalPages = ceil($totalRows/$perPage);
 
 $all_sql="SELECT * FROM orders WHERE order_id = $order_id";
 $r = $pdo->query($all_sql)->fetch();
-
+// if(empty($r)){
+//     header('Location: order.php');
+//     exit;
+// }
 ?>
 <?php include __DIR__ . '/includes/html-header.php'; ?>
 <style>

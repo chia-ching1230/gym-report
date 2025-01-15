@@ -242,7 +242,7 @@ if ($totalRows > 0) {
     const cancelAppointment = e => {
         e.preventDefault();
         const tr = e.target.closest('tr');
-        const [, ,td_id, td_name] = tr.querySelectorAll('td');
+        const [, td_id, td_name] = tr.querySelectorAll('td');
         const id = td_id.innerHTML;
         const name = td_name.innerHTML;
 
