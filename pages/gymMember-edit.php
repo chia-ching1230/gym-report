@@ -12,7 +12,7 @@ if (empty($member_id)) {
 $sql = "SELECT * FROM member_basic 
 JOIN member_auth ON member_basic.member_id = member_auth.member_id 
 JOIN member_profile ON member_basic.member_id = member_profile.member_id WHERE member_basic.member_id = $member_id";
-// $sql = "SELECT * FROM member_basic WHERE member_id = $member_id";
+
 $r = $pdo->query($sql)->fetch();
 if (empty($r)) {
     header('Location: gymMember.php');
