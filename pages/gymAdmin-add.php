@@ -48,9 +48,8 @@ $pageName = "gymAdmin-add";
                     </div>
                 </div>
                 <div class="row mb-6">
-                    <label class="col-sm-2 col-form-label" for="basic-default-code">編號</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="basic-default-code" name="admin_code">
+                        <input type="hidden" class="form-control" id="basic-default-code" name="admin_code">
                     </div>
                 </div>
                 <div class="row mb-6">
