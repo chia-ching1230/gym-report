@@ -7,4 +7,4 @@ const DB_NAME = 'gym_database';
 const DB_PORT = 3306;
 
 
-const PATH_BASE = 'gym-report-main';
+const PATH_BASE = 'gym-report';
