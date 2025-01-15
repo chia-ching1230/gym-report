@@ -56,11 +56,11 @@ $totalPages = ceil($totalRows / $perPage);
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>管理員ID</th>
+                    <th>ID</th>
                     <th>名稱 </th>
-                    <th>權限 </th>
+                    <th>編號 </th>
                     <th>郵件 </th>
-                    <th>管理員角色</th>
+                    <th>權限</th>
                     <th>創建時間</th>
                     <th>更新時間</th>
                     <th>編輯</th>
