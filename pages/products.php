@@ -11,13 +11,9 @@
     font-size: 18px; /* 修改表頭的字體大小 */
   }
 
-  .table thead tr th{
-    line-height: 1;
-    padding:20px 5px;
-    font-size: 16px;
-    font-weight: 600;
+  /* .table thead tr th{
     text-align:center;
-  }
+  } */
 .pagination .page-link {
   border-radius: 50%;
   width: 40px;
@@ -29,14 +25,14 @@
 }
 
 /* 縮短表格行高 */
-.table tbody tr {
+/* .table tbody tr {
   line-height: 1.5;
   font-size: 17px;
-}
+} */
 
-.table tbody tr td {
+/* .table tbody tr td {
   padding: 10px 10px;
-}
+} */
 </style>
 
 
@@ -98,12 +94,12 @@ $rows = $pdo->query($sql)->fetchAll(); # 取得該分頁的資料
 <div class="card pb-5">
   <div class="row">
     <div class="col-10">
-      <h4 class="card-header">器材列表</h4>
+      <h4 class="card-header fw-bold fs-4">器材列表</h4>
     </div>
     <div class="col-2 card-header d-flex align-items-center justify-content-center fs-5">
       <a href="products_add.php" class="nav-link">
-        <span class="d-none d-sm-block"> 
-        <i class="fa-solid fa-square-plus fa-xl mx-3 fs-5"></i>新增器材</span>
+        <span class="d-none d-sm-block  fs-5"> 
+        <i class="fa-solid fa-square-plus fa-xl mx-3"></i>新增器材</span>
       </a>
     </div>
   </div>
@@ -163,40 +159,39 @@ $rows = $pdo->query($sql)->fetchAll(); # 取得該分頁的資料
     </div>
   </div>
   <div class="row">
-    <div class="col">
-      <table class="table">
-      <table class="table table-bordered table-striped">
+    <div class="col table-responsive text-nowrap">
+      <table class="table table-hover">
         <thead>
           <tr>
-            <th >#id</th>
-            <th>器材編號</th>
-            <th>器材名稱</th>
-            <th>器材描述</th>
-            <th>器材種類</th>
-            <th>器材重量(公斤)</th>
-            <th>器材價格</th>
-            <th>圖片連結</th>
-            <th>建立時間</th>
-            <th>編輯</th>
-            <th>刪除</th>
+            <th class="p-3 pt-3 pb-3 fw-bold">#id</th>
+            <th class="p-3 pt-3 pb-3 fw-bold">器材編號</th>
+            <th class="p-3 pt-3 pb-3 fw-bold">器材名稱</th>
+            <th class="p-3 pt-3 pb-3 fw-bold">器材描述</th>
+            <th class="p-3 pt-3 pb-3 fw-bold">器材種類</th>
+            <th class="p-3 pt-3 pb-3 fw-bold">器材重量(公斤)</th>
+            <th class="p-3 pt-3 pb-3 fw-bold">器材價格</th>
+            <th class="p-3 pt-3 pb-3 fw-bold">圖片連結</th>
+            <th class="p-3 pt-3 pb-3 fw-bold">建立時間</th>
+            <th class="p-3 pt-3 pb-3 fw-bold">編輯</th>
+            <th class="p-3 pt-3 pb-3 fw-bold">刪除</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="table-border-bottom-0">
           <?php foreach ($rows as $r): ?>
             <tr>
-              <td><?= $r['product_id'] ?></td>
-              <td><?= $r['product_code'] ?></td>
-              <td><?= $r['name'] ?></td>
-              <td><?= $r['description'] ?></td>
-              <td><?= $r['category_name'] ?></td>
-              <td><?= $r['weight'] ?></td>
-              <td><?= $r['base_price'] ?></td>
-              <td><?= $r['image_url'] ?></td>
-              <td><?= $r['created_at'] ?></td>
-              <td><a class="dropdown-item" href="products_edit.php?product_id=<?= $r['product_id'] ?>">
+              <td class="p-3"><?= $r['product_id'] ?></td>
+              <td class="p-3"><?= $r['product_code'] ?></td>
+              <td class="p-3"><?= $r['name'] ?></td>
+              <td class="p-3"><?= $r['description'] ?></td>
+              <td class="p-3"><?= $r['category_name'] ?></td>
+              <td class="p-3"><?= $r['weight'] ?></td>
+              <td class="p-3"><?= $r['base_price'] ?></td>
+              <td class="p-3"><?= $r['image_url'] ?></td>
+              <td class="p-3"><?= $r['created_at'] ?></td>
+              <td class="p-3"><a class="dropdown-item" href="products_edit.php?product_id=<?= $r['product_id'] ?>">
                 <i class="bx bx-edit-alt me-1"></i></a>
               </td>
-              <td><a class="dropdown-item"  href="javascript:" onclick="deleteOne(event)">
+              <td class="p-3"><a class="dropdown-item"  href="javascript:" onclick="deleteOne(event)">
                 <i class="bx bx-trash me-1"></i></a>
               </td>
             </tr>

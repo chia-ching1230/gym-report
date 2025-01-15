@@ -4,18 +4,10 @@ $title ="訂單管理";
 $pageName="orders";
 
 $order_id = empty($_GET['order_id'])? 0 : intval($_GET['order_id']);
-// if(empty($order_id)){
-//   header('Location: order.php');
-//   exit;
-// }
+
 
 $allsql="SELECT * FROM orders WHERE order_id = $order_id";
 $r = $pdo->query($allsql)->fetch();
-// if(empty($r)){
-//   header('Location: order.php');
-//   exit;
-// }
-
 
 
 $perPage = 15;
@@ -134,7 +126,7 @@ $r = $pdo->query($all_sql)->fetch();
     <table class="table table-hover">
       <thead>
         <tr>
-        <th>#</th>
+        <!-- <th>#</th> -->
           <th>訂單號碼</th>
           <th>會員號碼</th>
           <th>總金額</th>
@@ -150,9 +142,9 @@ $r = $pdo->query($all_sql)->fetch();
       <tbody class="table-border-bottom-0">
         <?php foreach($rows as $v):?>
         <tr>
-          <td><button type="button" class="btn rounded-pill btn-icon btn-outline-secondary" data-bs-toggle="modal"  data-bs-target="#exLargeModal"  data-order-id="<?=$v['order_id']?>" id="viewBtn">
+          <!-- <td><button type="button" class="btn rounded-pill btn-icon btn-outline-secondary" data-bs-toggle="modal"  data-bs-target="#exLargeModal"  data-order-id="<?=$v['order_id']?>" id="viewBtn">
             <i class="fa-solid fa-magnifying-glass"></i>
-          </button></td>
+          </button></td> -->
           <td title="<?=$v['order_id']?>"><?=$v['order_id']?></td>
           <td style="max-width: 200px" title="<?=$v['member_id']?>"><?=$v['member_id']?></td>
           <td style="max-width: 150px" title="<?=htmlentities($v['total_amount'])?>">
@@ -176,7 +168,7 @@ $r = $pdo->query($all_sql)->fetch();
   </div>
 </div>
 
-<!-- modal -->
+<!-- modal找出圖示並刪除 -->
 <div class="modal fade" id="exLargeModal" tabindex="-1" style="display: none;" aria-hidden="true">
           <div class="modal-dialog modal-xl" role="document">
             <div class="modal-content">
@@ -248,46 +240,17 @@ $r = $pdo->query($all_sql)->fetch();
 <?php include __DIR__ . '/includes/html-script.php'; ?>
 
 <script>
-    const viewButtons = document.querySelectorAll('#viewBtn');
-  viewButtons.forEach(button => {
-      button.addEventListener('click', function() {
-          const orderId = this.getAttribute('data-order-id'); 
-          fetch(`order-details-api.php?order_id=${orderId}`)
-              .then(r => r.json())
-              .then(data => {
-                  if (data.success) {
-                      document.getElementById('basic-default-order_id').value = data.order.order_id;
-                      document.getElementById('basic-default-member_id').value = data.order.member_id;
-                      document.getElementById('basic-default-total_amount').value = data.order.total_amount;
-                      
-                      //order.self_pickup_store==4?'健身房A':'健身房B':'健身房C':'健身房D':'健身房E');
-                      /*document.getElementById('basic-default-uploadStatus').value = (data.order.uploadStatus==1?'發布':'未發布');*/
-                      document.getElementById('basic-default-self_pickup_store').value = 
-    (data === 4 ? '健身房A' : 
-    (data === 3 ? '健身房B' : 
-    (data === 2 ? '健身房C' : 
-    (data === 1 ? '健身房D' : '健身房E'))));
-
-                  } else {
-                      alert(data.error || '無法加載文章');
-                  }
-              })
-              .catch(error => {
-                  console.warn;
-                  alert('發生錯誤，請稍後再試');
-              });
-      });
-  });
+    
 
     const deleteOne = e=>{
         e.preventDefault();
         const tr = e.target.closest('tr')
-        const [,td_order_id,td_title,] = tr.querySelectorAll('td');
+        const [,td_order_id,td_member_id,] = tr.querySelectorAll('td');
         const orderid = td_order_id.innerHTML
-        const title = td_title.innerHTML
+        const member_id = td_member_id.innerHTML
         const delModal = new bootstrap.Modal('#delete-modal')
         delModal.show()
-        document.querySelector('#exampleModalLabel2').innerHTML=`是否要刪除編號為${orderid}，標題為${title}的文章`
+        document.querySelector('#exampleModalLabel2').innerHTML=`是否要刪除訂單號碼為${orderid}，會員號碼為${member_id}的訂單`
         document.querySelector('#yesgo').addEventListener('click',function(){
           location.href=`order-del-api.php?order_id=${orderid}`
         })

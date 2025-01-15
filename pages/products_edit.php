@@ -30,22 +30,23 @@ if(empty($r)){
 <div class="col-xxl">
     <div class="card mb-6">
       <div class="card-header d-flex align-items-center justify-content-between">
-        <h5 class="mb-0">編輯器材</h5> 
-        <small class="text-muted float-end"> <a href="products.php" class="nav-link">回到器材列表</a>
+        <h5 class="mb-0 fw-bold fs-4">編輯器材</h5> 
+        <small class="text-muted float-end border border-1 p-3 fs-6 rounded" style="background-color: #696cff;">
+          <a href="products.php" class="nav-link link-light">回到器材列表</a>
         </small>
       </div>
       <div class="card-body">
         <form onsubmit="sendData(event)">
         <input type="hidden" class="form-control" name="product_id" value="<?=$r['id'] ?>" >    
           <div class="row mb-6">
-              <label class="col-sm-2 col-form-label" for="basic-default-product_id">器材ID</label>
+              <label class="col-sm-2 col-form-label" for="basic-default-product_id"><i class="fa-solid fa-pen m-1"></i>器材ID</label>
               <div class="col-sm-10">
               <input type="text" class="form-control" id="basic-default-product_id" name="product_id" value="<?=$r['id'] ?>" disabled >
               <div id="product_idError" class="mt-3" style="color: red;"></div>
               </div>
           </div>
           <div class="row mb-6">
-            <label class="col-sm-2 col-form-label" for="basic-default-code">器材編號(必填)</label>
+            <label class="col-sm-2 col-form-label" for="basic-default-code"><i class="fa-solid fa-pen m-1"></i>器材編號(必填)</label>
             <div class="col-sm-10">
               <input type="text" class="form-control" id="basic-default-code" placeholder="例如:P001" name="product_code" value="<?=$r['product_code'] ?>">
               <div id="codeError" class="color-danger my-2"></div>
@@ -53,7 +54,7 @@ if(empty($r)){
             
           </div>
           <div class="row mb-6">
-            <label class="col-sm-2 col-form-label" for="basic-default-name">器材名稱(必填)</label>
+            <label class="col-sm-2 col-form-label" for="basic-default-name"><i class="fa-solid fa-pen m-1"></i>器材名稱(必填)</label>
             <div class="col-sm-10">
               <input type="text" class="form-control " id="basic-default-name" name="product_name" placeholder="product" name="title" value="<?=$r['name']?>">
               <div id="nameError" class="color-danger my-2"></div>
@@ -61,7 +62,7 @@ if(empty($r)){
             
           </div>
           <div class="row mb-2">
-            <label class="col-sm-2 col-form-label" for="basic-default-description">器材描述(必填)</label>
+            <label class="col-sm-2 col-form-label" for="basic-default-description"><i class="fa-solid fa-pen m-1"></i>器材描述(必填)</label>
             <div class="col-sm-10">
               <textarea id="basic-default-description" class="form-control" placeholder="適合中等強度力量訓練。"  rows="3" name="description"><?=$r['description']?></textarea>
               <div id="descriptionError"></div>
@@ -73,7 +74,7 @@ if(empty($r)){
             </div>
           </div>
           <div class="row mb-6">
-            <label class="col-sm-2 col-form-label" for="basic-default-checkbox" >器材種類</label >
+            <label class="col-sm-2 col-form-label" for="basic-default-checkbox" ><i class="fa-solid fa-pen m-1"></i>器材種類</label >
             <div class="col-sm-10">
                 <div class="row">
                     <div class="col-sm-6">
@@ -88,14 +89,14 @@ if(empty($r)){
             </div>
           </div>
           <div class="row mb-6">
-            <label class="col-sm-2 col-form-label" for="basic-default-title">器材重量</label>
+            <label class="col-sm-2 col-form-label" for="basic-default-title"><i class="fa-solid fa-pen m-1"></i>器材重量</label>
             <div class="col-sm-10">
               <input type="text" class="form-control" id="basic-default-title" placeholder="10(若器材有重量規格分類再填寫，若無則空白)" name="weight" value="<?=$r['weight']?>">
               <div id="titleError" class="color-danger my-2"></div>
             </div>
           </div>
           <div class="row mb-6">
-            <label class="col-sm-2 col-form-label" for="basic-default-price">器材價格(必填)</label>
+            <label class="col-sm-2 col-form-label" for="basic-default-price"><i class="fa-solid fa-pen m-1"></i>器材價格(必填)</label>
             <div class="col-sm-10">
               <input type="number" class="form-control" id="basic-default-price" placeholder="150" name="price" value="<?=$r['base_price']?>">
               <div id="priceError" class="color-danger my-2"></div>
@@ -103,7 +104,7 @@ if(empty($r)){
             
           </div>
           <div class="row mb-6">
-            <label class="col-sm-2 col-form-label" for="basic-default-url">圖片連結(必填)</label>
+            <label class="col-sm-2 col-form-label" for="basic-default-url"><i class="fa-solid fa-pen m-1"></i>圖片連結(必填)</label>
             <div class="col-sm-10">
               <input type="text" class="form-control" id="basic-default-url" placeholder="images/treadmill.jpg" name="image_url" value="<?=$r['image_url']?>">
               <div id="urlError" class="color-danger my-2"></div>
