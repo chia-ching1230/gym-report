@@ -57,59 +57,60 @@ if ($totalRows > 0) {
     </div>
     <div class="row">
         <!-- 分頁 -->
-        <div class="col-lg-8 mx-5 "> <div class="demo-inline-spacing">
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <li class="page-item <?= $page == 1 ? 'disabled' : '' ?>">
-                        <a class="page-link" href="?page=1">
-                            <i class="fa-solid fa-angles-left"></i>
-                        </a>
-                    </li>
-                    <li class="page-item <?= $page == 1 ? 'disabled' : '' ?>">
-                        <a class="page-link" href="?page=<?= $page - 1 ?>">
-                            <i class="fa-solid fa-angle-left"></i>
-                        </a>
-                    </li>
+        <div class="col-lg-8 mx-5 ">
+            <div class="demo-inline-spacing">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item <?= $page == 1 ? 'disabled' : '' ?>">
+                            <a class="page-link" href="?page=1">
+                                <i class="fa-solid fa-angles-left"></i>
+                            </a>
+                        </li>
+                        <li class="page-item <?= $page == 1 ? 'disabled' : '' ?>">
+                            <a class="page-link" href="?page=<?= $page - 1 ?>">
+                                <i class="fa-solid fa-angle-left"></i>
+                            </a>
+                        </li>
 
-                    <?php for ($i = $page - 5; $i <= $page + 5; $i++):
-                        if ($i >= 1 and $i <= $totalPages):
-                            ?>
-                            <li class="page-item <?= $i == $page ? 'active' : '' ?>">
-                                <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
-                            </li>
-                        <?php endif;
-                    endfor; ?>
+                        <?php for ($i = $page - 5; $i <= $page + 5; $i++):
+                            if ($i >= 1 and $i <= $totalPages):
+                                ?>
+                                <li class="page-item <?= $i == $page ? 'active' : '' ?>">
+                                    <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+                                </li>
+                            <?php endif;
+                        endfor; ?>
 
-                    <li class="page-item <?= $page == $totalPages ? 'disabled' : '' ?>">
-                        <a class="page-link" href="?page=<?= $page + 1 ?>">
-                            <i class="fa-solid fa-angle-right"></i>
-                        </a>
-                    </li>
-                    <li class="page-item <?= $page == $totalPages ? 'disabled' : '' ?>">
-                        <a class="page-link" href="?page=<?= $totalPages ?>">
-                            <i class="fa-solid fa-angles-right"></i>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+                        <li class="page-item <?= $page == $totalPages ? 'disabled' : '' ?>">
+                            <a class="page-link" href="?page=<?= $page + 1 ?>">
+                                <i class="fa-solid fa-angle-right"></i>
+                            </a>
+                        </li>
+                        <li class="page-item <?= $page == $totalPages ? 'disabled' : '' ?>">
+                            <a class="page-link" href="?page=<?= $totalPages ?>">
+                                <i class="fa-solid fa-angles-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </div>
         <div class="col-lg-3 me-5 d-flex align-items-center justify-content-end">
-                <form class="d-flex" action="coach.php">
-                    <div class="input-group">
-                        <button type="submit" class="input-group-text">
-                            <i class="tf-icons bx bx-search"></i>
-                        </button>
-                        <input type="search" class="form-control" placeholder="Search..." name="keyword"
-                            value="<?= empty($_GET['keyword']) ? '' : htmlentities($_GET['keyword']) ?>">
-                        <?php if (!empty($_GET['keyword'])): ?>
-                            <a href="coach.php" class="input-group-text" title="清除搜尋">
-                                <i class="tf-icons bx bx-x"></i>
-                            </a>
-                        <?php endif; ?>
-                    </div>
-                </form>
-            </div>
+            <form class="d-flex" action="coach.php">
+                <div class="input-group">
+                    <button type="submit" class="input-group-text">
+                        <i class="tf-icons bx bx-search"></i>
+                    </button>
+                    <input type="search" class="form-control" placeholder="Search..." name="keyword"
+                        value="<?= empty($_GET['keyword']) ? '' : htmlentities($_GET['keyword']) ?>">
+                    <?php if (!empty($_GET['keyword'])): ?>
+                        <a href="coach.php" class="input-group-text" title="清除搜尋">
+                            <i class="tf-icons bx bx-x"></i>
+                        </a>
+                    <?php endif; ?>
+                </div>
+            </form>
+        </div>
     </div>
 
     <div class="table-responsive text-nowrap">

@@ -141,5 +141,10 @@ if (empty($r)) {
                 }
             })
     };
+    // 設定當天日期
+    document.addEventListener('DOMContentLoaded', function () {
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('course_date').min = today;
+    });
 </script>
 <?php include __DIR__ . '/includes/html-footer.php'; ?>
