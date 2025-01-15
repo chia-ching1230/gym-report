@@ -8,6 +8,8 @@ $pageName = "products_add";
 <?php include __DIR__ . '/includes/html-layout-navbar.php'; ?>
 <?php include __DIR__ . '/includes/html-content wrapper-start.php'; ?>
 
+
+
 <div class="col-xxl">
     <div class="card mb-6">
       <div class="card-header d-flex align-items-center justify-content-between">
@@ -18,8 +20,8 @@ $pageName = "products_add";
       </div>
       <div class="card-body">
         <form onsubmit="sendData(event)">
+        <div id="error-message" style="color: red; display: none;"></div>
           <div class="row mb-6 d-flex">
-          
             <label class="col-sm-2 col-form-label" for="basic-default-code"><i class="fa-solid fa-pen m-1"></i>器材編號(必填)</label>
             <div class="col-sm-10">
               <input type="text" class="form-control" id="basic-default-code" placeholder="例:P001" name="product_code">
@@ -176,24 +178,49 @@ $pageName = "products_add";
         }
 
         
+        // if (isPass) {
+        //   const fd = new FormData(document.forms[0]);
+        //   const myModal = new bootstrap.Modal('#success-modal')
+        //   fetch(`product-add-api.php`, {
+        //     method: 'POST',
+        //     body: fd
+        //     }).then(r => r.json())
+        //     .then(obj => {
+        //     console.log(obj);
+        //     if (!obj.success && obj.error) {
+        //         alert(obj.error)
+        //     }
+        //     if (obj.success) {
+        //         myModal.show()
+        //     }
+        //     }).catch(console.warn);
+        // }
         if (isPass) {
-          const fd = new FormData(document.forms[0]);
-          const myModal = new bootstrap.Modal('#success-modal')
-          fetch(`product-add-api.php`, {
-            method: 'POST',
-            body: fd
-            }).then(r => r.json())
-            .then(obj => {
-            console.log(obj);
-            if (!obj.success && obj.error) {
-                alert(obj.error)
+    const fd = new FormData(document.forms[0]);
+    const myModal = new bootstrap.Modal('#success-modal')
+    fetch(`product-add-api.php`, {
+        method: 'POST',
+        body: fd
+    }).then(r => r.json())
+    .then(obj => {
+        console.log(obj);
+        if (!obj.success) {
+            if (obj.error === 'duplicate_code') {
+                document.querySelector('#codeError').innerHTML = '此編號已被使用，請更換其他編號';
+                code.classList.add('btn-outline-danger');
+            } else if (obj.error) {
+                alert('發生錯誤，請稍後再試');
             }
-            if (obj.success) {
-                myModal.show()
-            }
-            }).catch(console.warn);
         }
+        if (obj.success) {
+            myModal.show()
+        }
+    }).catch(console.warn);
+}
+
     }
+
+    
 </script>
 <?php include __DIR__ . '/includes/html-script.php'; ?>
 <?php include __DIR__ . '/includes/html-footer.php'; ?>

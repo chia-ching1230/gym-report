@@ -157,7 +157,7 @@ $rows = $pdo->query($sql)->fetchAll(); # 取得該分頁的資料
   <!-- 表格 -->
   <div class="row">
     <div class="col table-responsive text-nowrap">
-      <table class="table table-hover mb-4">
+      <table class="table  table-hover mb-4">
         <thead>
           <tr>
             <th class="p-4 fw-bold fs-6">
@@ -315,48 +315,50 @@ $rows = $pdo->query($sql)->fetchAll(); # 取得該分頁的資料
       }
       // 多選刪除
       document.addEventListener("DOMContentLoaded", function () {
-  const selectAllCheckbox = document.getElementById("select-all");
-  const rowCheckboxes = document.querySelectorAll(".row-checkbox");
-  const deleteButton = document.getElementById("delete-selected");
+        const selectAllCheckbox = document.getElementById("select-all");
+        const rowCheckboxes = document.querySelectorAll(".row-checkbox");
+        const deleteButton = document.getElementById("delete-selected");
 
-  // 全選功能
-  selectAllCheckbox.addEventListener("change", function () {
-    const isChecked = selectAllCheckbox.checked;
-    rowCheckboxes.forEach((checkbox) => {
-      checkbox.checked = isChecked;
-    });
-  });
+        // 全選功能
+        selectAllCheckbox.addEventListener("change", function () {
+          const isChecked = selectAllCheckbox.checked;
+          rowCheckboxes.forEach((checkbox) => {
+            checkbox.checked = isChecked;
+          });
+        });
 
   // 批量刪除功能
-  deleteButton.addEventListener("click", function () {
-    const selectedIds = Array.from(rowCheckboxes)
-      .filter((checkbox) => checkbox.checked)
-      .map((checkbox) => checkbox.value);
+        deleteButton.addEventListener("click", function () {
+          const selectedIds = Array.from(rowCheckboxes)
+            .filter((checkbox) => checkbox.checked)
+            .map((checkbox) => checkbox.value);
 
-    if (selectedIds.length === 0) {
-      alert("請先勾選要刪除的項目！");
-      return;
-    }
-
-    if (confirm(`確定要刪除選取的 ${selectedIds.length} 項嗎？`)) {
-      // 發送 AJAX 請求到後端
-      fetch("delete-multiple-api.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ids: selectedIds }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.success) {
-            alert("刪除成功！");
-            location.reload(); // 重新加載頁面
-          } else {
-            alert("刪除失敗：" + data.error);
+          if (selectedIds.length === 0) {
+            alert("請先勾選要刪除的項目！");
+            return;
           }
-        })
-        .catch((error) => console.error("Error:", error));
-    }
-  });
-});
+
+          if (confirm(`確定要刪除選取的 ${selectedIds.length} 項嗎？`)) {
+            // 發送 AJAX 請求到後端
+            fetch("delete-multiple-api.php", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ ids: selectedIds }),
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                if (data.success) {
+                  alert("刪除成功！");
+                  location.reload(); // 重新加載頁面
+                } else {
+                  alert("刪除失敗：" + data.error);
+                }
+              })
+              .catch((error) => console.error("Error:", error));
+          }
+        });
+      });
+
+
 </script>
 <?php include __DIR__ . '/includes/html-footer.php'; ?>
