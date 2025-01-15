@@ -102,7 +102,7 @@ $pageName = "login";
             if (!obj.success) {
                 myModal.show(); // 呈現 modal
             }else{
-                location.href="index_.php"
+                location.href="home-admin.php"
             }
             }).catch(console.warn);
         }
