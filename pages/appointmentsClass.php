@@ -119,13 +119,13 @@ if ($totalRows > 0) {
                                             <span class="badge bg-label-secondary  me-1">審核中</span>
                                         <?php elseif ($r['status'] == 'confirmed'): ?>
                                             <span class="badge bg-label-primary me-1">預約成功</span>
-                                        <?php else: ?>
-                                            <span class="badge bg-label-danger me-1">狀態錯誤</span>
+                                        <?php elseif ($r['status'] == 'cancelled'): ?>
+                                            <span class="badge bg-label-danger me-1">已取消</span>
                                         <?php endif; ?>
                                     </td>
                                     <td><?= $r['created_at'] ?></td>
                                     <td>
-                                        <a href="edit-appointment.php?id=<?= $r['appointment_id'] ?>">
+                                        <a href="appointmentsClass-edit.php?id=<?= $r['appointment_id'] ?>">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
                                     </td>
