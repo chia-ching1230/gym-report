@@ -1,10 +1,4 @@
-<?php require __DIR__ . '/includes/init.php'; ?>
-
-
-<?php include __DIR__ . '/includes/html-header.php'; ?>
-<?php include __DIR__ . '/includes/html-sidebar.php'; ?>
-<?php include __DIR__ . '/includes/html-layout-navbar-admin.php'; ?>
-<?php include __DIR__ . '/includes/html-content wrapper-start.php'; ?>
+<?php require __DIR__ . '/includes/init.php';?>
 
 <style>
   .custom-select {
@@ -20,6 +14,7 @@
     font-size: 18px; /* 修改表頭的字體大小 */
   }
 
+
 .pagination .page-link {
   border-radius: 50%;
   width: 40px;
@@ -29,6 +24,7 @@
   justify-content: center;
   padding: 0;
 }
+
 </style>
 
 
