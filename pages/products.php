@@ -4,6 +4,18 @@
 <?php include __DIR__ . '/includes/html-layout-navbar.php'; ?>
 <?php include __DIR__ . '/includes/html-content wrapper-start.php'; ?>
 <style>
+  .custom-select {
+    /* appearance: none;  */
+    /* -moz-appearance: none;  */
+    /* -webkit-appearance: none; */
+    /* background: url('data:image/svg+xml;charset=UTF-8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"%3E%3Cpath fill="%23696cff" d="M2 0L0 2h4z" /%3E%3C/svg%3E') no-repeat right center; 
+    background-size: 12px 12px; */
+    border: 0; 
+    /* padding-right: 20px;  */
+    cursor: pointer; /* 顯示手型游標 */
+    width: auto; /* 自適應寬度 */
+    background-color: transparent; /* 背景透明 */
+  }
   table {
     font-size: 16px; /* 修改整個表格的字體大小 */
   }
@@ -50,6 +62,11 @@ $where = ' WHERE 1 ';
 if($keyword){
   $keyword_ = $pdo->quote("%{$keyword}%"); 
   $where .= " AND (name LIKE $keyword_ OR base_price LIKE $keyword_)";
+}
+
+$category = empty($_GET['category']) ? '' : $_GET['category']; // 新增接收器材種類參數
+if ($category) {
+  $where .= " AND category_name = " . $pdo->quote($category); // 新增條件篩選
 }
 
 $t_sql = "SELECT COUNT(1) FROM `products` $where";
@@ -104,11 +121,11 @@ $rows = $pdo->query($sql)->fetchAll(); # 取得該分頁的資料
     </div>
   </div>
 <div class="container">
-<div class="row mt-4">
+ <div class="row mt-4">
     <div class="col d-flex justify-content-between">
+      <!-- 頁籤 -->
       <nav aria-label="Page navigation example">
         <ul class="pagination">
-
         <li class="page-item <?= $page==1 ? 'disabled' : '' ?>">
         <a class="page-link" href="?page=1">
               <i class="fa-solid fa-angles-left"></i>
@@ -158,6 +175,7 @@ $rows = $pdo->query($sql)->fetchAll(); # 取得該分頁的資料
       </div>
     </div>
   </div>
+  <!-- 表格 -->
   <div class="row">
     <div class="col table-responsive text-nowrap">
       <table class="table table-hover">
@@ -167,7 +185,25 @@ $rows = $pdo->query($sql)->fetchAll(); # 取得該分頁的資料
             <th class="p-3 pt-3 pb-3 fw-bold">器材編號</th>
             <th class="p-3 pt-3 pb-3 fw-bold">器材名稱</th>
             <th class="p-3 pt-3 pb-3 fw-bold">器材描述</th>
-            <th class="p-3 pt-3 pb-3 fw-bold">器材種類</th>
+            <th class="p-3 pt-3 pb-3 fw-bold">
+            <form class="d-inline-block" style="margin: 0;">
+            <select class="custom-select" 
+                    name="category" 
+                    onchange="this.form.submit()" 
+                    style="width: auto; display: inline-block; background: none;">
+              <option value="">器材種類</option>
+              <!-- 動態生成種類選項 -->
+              <?php
+              $categories = $pdo->query("SELECT DISTINCT category_name FROM products")->fetchAll();
+              foreach ($categories as $c): ?>
+                <option value="<?= htmlentities($c['category_name']) ?>" 
+                <?= $c['category_name'] == ($_GET['category'] ?? '') ? 'selected' : '' ?>>
+                  <?= htmlentities($c['category_name']) ?>
+                </option>
+              <?php endforeach; ?>
+            </select>
+          </form>
+            </th>
             <th class="p-3 pt-3 pb-3 fw-bold">器材重量(公斤)</th>
             <th class="p-3 pt-3 pb-3 fw-bold">器材價格</th>
             <th class="p-3 pt-3 pb-3 fw-bold">圖片連結</th>
