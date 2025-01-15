@@ -47,21 +47,21 @@ $pageName = "gymAdmin-add";
                         <div id="nameError" class="color-danger my-2"></div>
                     </div>
                 </div>
-                <!-- <div class="row mb-6">
-                        <label class="col-sm-2 col-form-label" for="basic-default-code">編號</label>
-                        <div class="col-sm-10">
-                            <input type="date" class="form-control" id="basic-default-code" name="admin_code" value="">
-                        </div>
-                    </div> -->
+                <div class="row mb-6">
+                    <label class="col-sm-2 col-form-label" for="basic-default-code">編號</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="basic-default-code" name="admin_code">
+                    </div>
+                </div>
                 <div class="row mb-6">
                     <label class="col-sm-2 col-form-label" for="basic-default-role">權限</label>
                     <div class="col-sm-10 d-flex justify-content-start align-items-center">
                         <div class="form-check mb-0 col-lg-6 ">
-                            <input type="radio" id="basic-default-radio-role-1" name="gender" value="1" class="form-check-input " checked />
+                            <input type="radio" id="basic-default-radio-role-1" name="admin_role" value="1" class="form-check-input " checked />
                             <label class="form-check-label" for="basic-default-radio-role-1">超級管理員</label>
                         </div>
                         <div class="form-check  mb-0 col-lg-6">
-                            <input type="radio" id="basic-default-radio-role-2" name="gender" value="2" class="form-check-input" />
+                            <input type="radio" id="basic-default-radio-role-2" name="admin_role" value="2" class="form-check-input" />
                             <label class="form-check-label" for="basic-default-radio-role-2">檢視者</label>
                         </div>
                     </div>
@@ -106,8 +106,8 @@ $pageName = "gymAdmin-add";
 
 <script>
     const email = document.querySelector("#basic-default-email")
-    const memberPass = document.querySelector("#basic-default-password")
-    const memberConfirmPass = document.querySelector("#basic-default-confirm-password")
+    const adminPass = document.querySelector("#basic-default-password")
+    const adminConfirmPass = document.querySelector("#basic-default-confirm-password")
     const name = document.querySelector('#basic-default-name')
     const confirmPassError = document.querySelector("#confirmPassError")
     const passwordError = document.querySelector("#passwordError")
@@ -115,8 +115,8 @@ $pageName = "gymAdmin-add";
     const sendData = e => {
         e.preventDefault();
         email.classList.remove('btn-outline-danger')
-        memberPass.classList.remove('btn-outline-danger')
-        memberConfirmPass.classList.remove('btn-outline-danger')
+        adminPass.classList.remove('btn-outline-danger')
+        adminConfirmPass.classList.remove('btn-outline-danger')
         name.classList.remove("btn-outline-danger")
 
         function validateEmail(email) {
@@ -124,10 +124,10 @@ $pageName = "gymAdmin-add";
             return mailpattern.test(email)
         }
 
-        // function validatePassword(memberPass) {
-        //     const passPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        //     return passPattern.test(memberPass)
-        // }
+        function validatePassword(adminPass) {
+            const passPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W+).{6,30}$/;
+            return passPattern.test(adminPass)
+        }
 
         // function validateconfirmPassword(memberConfirmPass) {
         //     const passPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -143,29 +143,29 @@ $pageName = "gymAdmin-add";
             document.querySelector('#emailError').innerHTML = '請填寫正確email'
             email.classList.add('btn-outline-danger')
         }
-        // if (!validatePassword(memberPass.value)) {
-        //     isPass = false;
-        //     document.querySelector('#passwordError').innerHTML = '密碼格式錯誤，請重新輸入'
-        //     email.classList.add('btn-outline-danger')
-        // }
-        // if (!memberConfirmPass.value==memberPass.value) {
-        //     isPass = false;
-        //     // document.querySelector('#passwordError').innerHTML = '密碼格式錯誤，請重新輸入'
-        //     // email.classList.add('btn-outline-danger')
-        // }
+        if (!validatePassword(adminPass.value)) {
+            isPass = false;
+            document.querySelector('#passwordError').innerHTML = '密碼格式錯誤，請重新輸入'
+            adminPass.classList.add('btn-outline-danger')
+        }
 
-        if (name.value.length <3) {
+        if (adminPass.value !== adminConfirmPass.value) {
+            isPass = false;
+            confirmPassError.classList.add('text-danger').innerHTML = '密碼不一致'
+            adminConfirmPass.classList.add('btn-outline-danger ')
+        }
+        if (name.value.length < 3) {
             isPass = false;
             document.querySelector('#nameError').innerHTML = '名字不能小於3個字'
             name.classList.add('btn-outline-danger')
         }
-      
 
-        
+
+
         if (isPass) {
             const fd = new FormData(document.forms[0]);
             const myModal = new bootstrap.Modal('#success-modal')
-            fetch(`gymMember-add-api.php`, {
+            fetch(`gymAdmin-add-api.php`, {
                     method: 'POST',
                     body: fd
                 }).then(r => r.json())
@@ -182,26 +182,26 @@ $pageName = "gymAdmin-add";
     }
 
 
-    memberPass.addEventListener("blur", () => {
+    adminPass.addEventListener("blur", () => {
         const passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W+).{6,30}$/;
-        const password = memberPass.value;
+        const password = adminPass.value;
         if (!passwordPattern.test(password)) {
             passwordError.innerHTML = '密碼格式錯誤，請重新輸入'
-            memberPass.classList.add('btn-outline-danger')
+            adminPass.classList.add('btn-outline-danger')
         } else {
             passwordError.innerHTML = ''
-            memberPass.classList.remove('btn-outline-danger')
+            adminPass.classList.remove('btn-outline-danger')
         }
     })
-    memberConfirmPass.addEventListener("blur", () => {
-        const password = memberPass.value;
-        const confirmPassword = memberConfirmPass.value;
+    adminConfirmPass.addEventListener("blur", () => {
+        const password = adminPass.value;
+        const confirmPassword = adminConfirmPass.value;
         if (password !== confirmPassword) {
             confirmPassError.innerHTML = '密碼不一致'
-            memberConfirmPass.classList.add('btn-outline-danger')
+            adminConfirmPass.classList.add('btn-outline-danger')
         } else {
             confirmPassError.innerHTML = ''
-            memberConfirmPass.classList.remove('btn-outline-danger')
+            adminConfirmPass.classList.remove('btn-outline-danger')
         }
     })
 </script>
