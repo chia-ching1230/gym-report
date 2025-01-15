@@ -32,7 +32,7 @@ $pageName = "login";
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">密碼</label>
-                        <input type="text" class="form-control" id="password" name="member_password">
+                        <input type="text" class="form-control" id="password" name="admin_password">
                         <div class="form-text"></div>
                     </div>
                     
@@ -102,7 +102,7 @@ $pageName = "login";
             if (!obj.success) {
                 myModal.show(); // 呈現 modal
             }else{
-                location.href="index_.php"
+                location.href="home-admin.php"
             }
             }).catch(console.warn);
         }

@@ -9,15 +9,15 @@ $output = [
     'error'=>'', #回應給前端的除錯消息
 ];
 //帳號密碼其中有一個欄位沒值就離開
-if(empty($_POST['email'])or empty($_POST['member_password'])){
+if(empty($_POST['email'])or empty($_POST['admin_password'])){
     echo json_encode($output);
     exit;
 }
 //trim()去掉頭尾空白
 $email=trim($_POST['email']);
-$password=trim($_POST['member_password']);
+$password=trim($_POST['admin_password']);
 //1.先確認帳號使否正確
-$sql = "SELECT * FROM member_auth WHERE email=?";
+$sql = "SELECT * FROM gym_admin WHERE email=?";
 $stmt = $pdo->prepare($sql);
 $stmt->execute([$email]);
 $row =$stmt->fetch();
@@ -27,19 +27,21 @@ if(empty($row)){
     echo json_encode($output);
     exit;
 }
-if(!password_verify($password, $row['member_password'])){
+if(!password_verify($password, $row['admin_password_hash()'])){
     $output['code']=420;
     echo json_encode($output);
     exit;
 }
 #帳密都對，狀態傳入session
 $_SESSION['admin']=[
-    'id'=>$row['member_id'],
+    'id'=>$row['admin_id'],
     'email'=>$email,
 ];
 $output['success']=true; #登入成功
 
 echo json_encode($output,JSON_UNESCAPED_UNICODE);
+
+
 
 
 

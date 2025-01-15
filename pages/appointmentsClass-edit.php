@@ -46,7 +46,7 @@ if (empty($row)){
 
 <?php include __DIR__ . '/includes/html-header.php'; ?>
 <?php include __DIR__ . '/includes/html-sidebar.php'; ?>
-<?php include __DIR__ . '/includes/html-layout-navbar.php'; ?>
+<?php include __DIR__ . '/includes/html-layout-navbar-admin.php'; ?>
 <?php include __DIR__ . '/includes/html-content wrapper-start.php'; ?>
 
 <div class="container">
