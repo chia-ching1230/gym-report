@@ -1,8 +1,5 @@
 <?php require __DIR__ . '/includes/init.php';?>
-<?php include __DIR__ . '/includes/html-header.php'; ?>
-<?php include __DIR__ . '/includes/html-sidebar.php'; ?>
-<?php include __DIR__ . '/includes/html-layout-navbar.php'; ?>
-<?php include __DIR__ . '/includes/html-content wrapper-start.php'; ?>
+
 <style>
   .custom-select {
     /* appearance: none;  */
@@ -74,8 +71,8 @@ $t_sql = "SELECT COUNT(1) FROM `products` $where";
 $totalRows = $pdo->query($t_sql)->fetch(PDO::FETCH_NUM)[0];
 # 總頁數
 $totalPages = ceil($totalRows / $perPage);
-
 $rows = []; # 設定預設值
+
 if ($totalRows > 0) {
   if ($page > $totalPages) {
     // ob_clean();
@@ -121,6 +118,12 @@ $perPage);
 $rows = $pdo->query($sql)->fetchAll(); # 取得該分頁的資料
 }
 ?>
+
+<?php include __DIR__ . '/includes/html-header.php'; ?>
+<?php include __DIR__ . '/includes/html-sidebar.php'; ?>
+<?php include __DIR__ . '/includes/html-layout-navbar.php'; ?>
+<?php include __DIR__ . '/includes/html-content wrapper-start.php'; ?>
+
 <div class="card pb-5">
   <div class="row">
     <div class="col-10">
@@ -135,61 +138,17 @@ $rows = $pdo->query($sql)->fetchAll(); # 取得該分頁的資料
   </div>
 <div class="container">
  <div class="row mt-4">
-    <div class="col d-flex justify-content-between">
-      <!-- 頁籤 -->
-       <?php
-          $qs = array_filter($_GET); # 去除值是空字串的項目
-       ?>
-      <nav aria-label="Page navigation example">
-        <ul class="pagination">
-        <li class="page-item <?= $page==1 ? 'disabled' : '' ?>">
-        <a class="page-link" href="?<?php $qs['page'] = 1;
-                                        echo http_build_query($qs) ?>">
-              <i class="fa-solid fa-angles-left"></i>
-            </a>
-          </li>
-          <li class="page-item <?= $page==1 ? 'disabled' : '' ?>">
-          <a class="page-link" href="?<?php $qs['page'] = $page - 1;
-                                        echo http_build_query($qs) ?>">
-              <i class="fa-solid fa-angle-left"></i>
-            </a>
-          </li>
-
-          <?php for ($i = $page - 5; $i <= $page + 5; $i++): 
-                if ($i >= 1 and $i <= $totalPages):
-                $qs = array_filter($_GET); # 去除值是空字串的項目
-                $qs['page'] = $i;
-            ?>
-            <li class="page-item <?= $i==$page ? 'active' : '' ?>">
-              <a style="height = 10px" class="page-link" href="?<?= http_build_query($qs) ?>"><?= $i ?></a>
-            </li>
-          <?php 
-          endif;
-        endfor; ?>
-
-          <li class="page-item <?= $page==$totalPages ? 'disabled' : '' ?>">
-            <a class="page-link" href="?<?php $qs['page'] = $page + 1;
-                                        echo http_build_query($qs) ?>">
-              <i class="fa-solid fa-angle-right"></i>
-            </a>
-          </li>
-          <li class="page-item <?= $page==$totalPages ? 'disabled' : '' ?>">
-            <a class="page-link" href="?<?php $qs['page'] = $totalPages;
-                                        echo http_build_query($qs) ?>">
-              <i class="fa-solid fa-angles-right"></i>
-            </a>
-          </li>
-        </ul>
-      </nav>
+    <div class="col d-flex justify-content-between p-4">
+    <button class="btn btn-danger btn-sm " id="delete-selected">刪除選取項目</button>
       <!-- 搜尋 -->
       <div class="col-lg-3 me-5  d-flex align-items-center justify-content-end">
-        <form class="d-flex  ">
+        <form class="d-flex" style= "height:20px;">
             <div class="input-group">
                   <button class="input-group-text">
-                    <i class="tf-icons bx bx-search"></i>
+                    <i class="tf-icons bx bx-search fs-4"></i>
                   </button>
-              <input type="search" class="form-control" placeholder="Search..." name="keyword" 
-              value="<?=empty($_GET['keyword'])?'':htmlentities($_GET['keyword'])?>">
+              <input type="search" class="form-control " placeholder="Search..." name="keyword" 
+              value="<?=empty($_GET['keyword'])?'':htmlentities($_GET['keyword'])?>" >
             </div>
         </form>
       </div>
@@ -198,9 +157,12 @@ $rows = $pdo->query($sql)->fetchAll(); # 取得該分頁的資料
   <!-- 表格 -->
   <div class="row">
     <div class="col table-responsive text-nowrap">
-      <table class="table table-hover">
+      <table class="table table-hover mb-4">
         <thead>
           <tr>
+            <th class="p-4 fw-bold fs-6">
+              <input type="checkbox" id="select-all" />
+            </th>
             <th class="p-4 fw-bold  fs-6">#id</th>
             <th class="p-4 fw-bold  fs-6">編號</th>
             <th class="p-4 fw-bold  fs-6">品項</th>
@@ -244,6 +206,9 @@ $rows = $pdo->query($sql)->fetchAll(); # 取得該分頁的資料
         <tbody class="table-border-bottom-0">
           <?php foreach ($rows as $r): ?>
             <tr>
+              <td class="p-4">
+                <input type="checkbox" class="row-checkbox" value="<?= $r['product_id'] ?>" />
+              </td>
               <td class="p-4"><?= $r['product_id'] ?></td>
               <td class="p-4"><?= $r['product_code'] ?></td>
               <td class="p-4"><?= $r['name'] ?></td>
@@ -263,6 +228,50 @@ $rows = $pdo->query($sql)->fetchAll(); # 取得該分頁的資料
           <?php endforeach; ?>
         </tbody>
       </table>
+      <?php
+          $qs = array_filter($_GET); # 去除值是空字串的項目
+       ?>
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+        <li class="page-item <?= $page==1 ? 'disabled' : '' ?>">
+        <a class="page-link" href="?<?php $qs['page'] = 1;
+                                        echo http_build_query($qs) ?>">
+              <i class="fa-solid fa-angles-left"></i>
+            </a>
+          </li>
+          <li class="page-item <?= $page==1 ? 'disabled' : '' ?>">
+          <a class="page-link" href="?<?php $qs['page'] = $page - 1;
+                                        echo http_build_query($qs) ?>">
+              <i class="fa-solid fa-angle-left"></i>
+            </a>
+          </li>
+
+          <?php for ($i = $page - 5; $i <= $page + 5; $i++): 
+                if ($i >= 1 and $i <= $totalPages):
+                $qs = array_filter($_GET); # 去除值是空字串的項目
+                $qs['page'] = $i;
+            ?>
+            <li class="page-item <?= $i==$page ? 'active' : '' ?>">
+              <a style="height = 10px" class="page-link" href="?<?= http_build_query($qs) ?>"><?= $i ?></a>
+            </li>
+          <?php 
+          endif;
+        endfor; ?>
+
+          <li class="page-item <?= $page==$totalPages ? 'disabled' : '' ?>">
+            <a class="page-link" href="?<?php $qs['page'] = $page + 1;
+                                        echo http_build_query($qs) ?>">
+              <i class="fa-solid fa-angle-right"></i>
+            </a>
+          </li>
+          <li class="page-item <?= $page==$totalPages ? 'disabled' : '' ?>">
+            <a class="page-link" href="?<?php $qs['page'] = $totalPages;
+                                        echo http_build_query($qs) ?>">
+              <i class="fa-solid fa-angles-right"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </div> 
 
@@ -291,7 +300,6 @@ $rows = $pdo->query($sql)->fetchAll(); # 取得該分頁的資料
 <?php include __DIR__ . '/includes/html-content wrapper-end.php'; ?>
 <?php include __DIR__ . '/includes/html-script.php'; ?>
 <script>
-  
   const deleteOne = e=>{
           e.preventDefault();
           const tr = e.target.closest('tr')
@@ -305,5 +313,50 @@ $rows = $pdo->query($sql)->fetchAll(); # 取得該分頁的資料
             location.href=`product-del-api.php?product_id=${productid}`
           })
       }
+      // 多選刪除
+      document.addEventListener("DOMContentLoaded", function () {
+  const selectAllCheckbox = document.getElementById("select-all");
+  const rowCheckboxes = document.querySelectorAll(".row-checkbox");
+  const deleteButton = document.getElementById("delete-selected");
+
+  // 全選功能
+  selectAllCheckbox.addEventListener("change", function () {
+    const isChecked = selectAllCheckbox.checked;
+    rowCheckboxes.forEach((checkbox) => {
+      checkbox.checked = isChecked;
+    });
+  });
+
+  // 批量刪除功能
+  deleteButton.addEventListener("click", function () {
+    const selectedIds = Array.from(rowCheckboxes)
+      .filter((checkbox) => checkbox.checked)
+      .map((checkbox) => checkbox.value);
+
+    if (selectedIds.length === 0) {
+      alert("請先勾選要刪除的項目！");
+      return;
+    }
+
+    if (confirm(`確定要刪除選取的 ${selectedIds.length} 項嗎？`)) {
+      // 發送 AJAX 請求到後端
+      fetch("delete-multiple-api.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ids: selectedIds }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            alert("刪除成功！");
+            location.reload(); // 重新加載頁面
+          } else {
+            alert("刪除失敗：" + data.error);
+          }
+        })
+        .catch((error) => console.error("Error:", error));
+    }
+  });
+});
 </script>
 <?php include __DIR__ . '/includes/html-footer.php'; ?>
