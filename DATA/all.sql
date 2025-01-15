@@ -389,11 +389,6 @@ VALUES
 ('P048', '熱敷墊', '電子加熱的熱敷墊，促進血液循環。', '其他', 0.50, 35.00, 'images/heating_pad.jpg'),
 ('P049', '運動筆記本', '記錄運動計劃和目標的專業筆記本。', '其他', NULL, 10.00, 'images/sports_notebook.jpg'),
 ('P050', '運動毛巾', '大尺寸吸水運動毛巾，適合訓練後使用。', '其他', NULL, 12.00, 'images/sports_towel.jpg'),
-('P051', '護膝', '專業運動護膝，保護膝蓋關節。', '運動護具', NULL, 20.00, 'images/knee_pad.jpg'),
-('P052', '護腕', '加強支撐的運動護腕，減少受傷風險。', '運動護具', NULL, 12.00, 'images/wrist_support.jpg'),
-('P053', '護肘', '輕量透氣的運動護肘。', '運動護具', NULL, 15.00, 'images/elbow_pad.jpg'),
-('P054', '護踝', '高彈性運動護踝，適合多種運動。', '運動護具', NULL, 10.00, 'images/ankle_support.jpg'),
-('P055', '護肩', '加厚型運動護肩，支撐肩部運動。', '運動護具', NULL, 25.00, 'images/shoulder_support.jpg');
 
 CREATE TABLE Videos (
     videos_id INT AUTO_INCREMENT PRIMARY KEY,   -- 影片 ID (主鍵、自增)
