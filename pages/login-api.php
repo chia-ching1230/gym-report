@@ -27,7 +27,7 @@ if(empty($row)){
     echo json_encode($output);
     exit;
 }
-if(!password_verify($password, $row['admin_password'])){
+if(!password_verify($password, $row['admin_password_hash()'])){
     $output['code']=420;
     echo json_encode($output);
     exit;
@@ -40,6 +40,8 @@ $_SESSION['admin']=[
 $output['success']=true; #登入成功
 
 echo json_encode($output,JSON_UNESCAPED_UNICODE);
+
+
 
 
 

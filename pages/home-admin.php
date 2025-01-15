@@ -5,7 +5,7 @@ $pageName="home";
 ?>
 <?php include __DIR__ . '/includes/html-header.php'; ?>
 <?php include __DIR__ . '/includes/html-sidebar.php'; ?>
-<?php include __DIR__ . '/includes/html-layout-navbar-1.php'; ?>
+<?php include __DIR__ . '/includes/html-layout-navbar-admin.php'; ?>
 <?php include __DIR__ . '/includes/html-content wrapper-start.php'; ?>
 
 <div class="card d-flex justify-content-center" style="height: 700px;">
