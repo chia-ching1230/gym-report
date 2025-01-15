@@ -1,3 +1,41 @@
+INSERT INTO member_auth (member_id, email, member_password, last_login) VALUES
+(1, 'zhangdaming01@gmail.com', 'password123', '2025-01-12 08:30:00'),
+(2, 'lixiaomei02@gmail.com', 'mypassword321', '2025-01-11 09:15:00'),
+(3, 'wangzhiming03@yahoo.com', '1234qwerty', '2025-01-10 10:00:00'),
+(4, 'chenyijun04@hotmail.com', 'yoga1234', '2025-01-09 14:45:00'),
+(5, 'linziming05@gmail.com', 'running123', '2025-01-08 15:30:00'),
+(6, 'huangyiting06@gmail.com', 'password987', '2025-01-07 11:00:00'),
+(7, 'liujianguo07@yahoo.com', 'weightlifting123', '2025-01-06 16:00:00'),
+(8, 'xusiwen08@gmail.com', 'dance4567', '2025-01-05 17:00:00'),
+(9, 'zhangjiayu09@hotmail.com', 'cycling1234', '2025-01-04 13:30:00'),
+(10, 'lizhihan10@gmail.com', 'fitness2025', '2025-01-03 08:00:00'),
+(11, 'zhouxiaopeng11@yahoo.com', 'password876', '2025-01-02 09:20:00'),
+(12, 'liushiha12@gmail.com', 'strength1234', '2025-01-01 10:45:00'),
+(13, 'chenhongzhi13@yahoo.com', 'running789', '2024-12-31 14:30:00'),
+(14, 'linxinru14@hotmail.com', 'swimming4321', '2024-12-30 12:10:00'),
+(15, 'zhengyongcheng15@gmail.com', 'yoga5678', '2024-12-29 11:00:00'),
+(16, 'yanglihua16@yahoo.com', 'cycling321', '2024-12-28 17:20:00'),
+(17, 'zhangjiahao17@gmail.com', 'fitness9876', '2024-12-27 16:10:00'),
+(18, 'wangmeixia18@hotmail.com', 'strength2025', '2024-12-26 15:00:00'),
+(19, 'linmingjie19@yahoo.com', 'dance12345', '2024-12-25 10:00:00'),
+(20, 'huangyiwen20@gmail.com', 'yoga567', '2024-12-24 09:40:00'),
+(21, 'zhoujianzhong21@gmail.com', 'running2025', '2024-12-23 14:25:00'),
+(22, 'zhangchenhui22@hotmail.com', 'swimming678', '2024-12-22 13:30:00'),
+(23, 'chenjianxi23@yahoo.com', 'yoga2025', '2024-12-21 11:50:00'),
+(24, 'linlixuan24@gmail.com', 'lifting321', '2024-12-20 16:35:00'),
+(25, 'liujunjie25@hotmail.com', 'cycling9876', '2024-12-19 15:10:00'),
+(26, 'wangxiaowen26@gmail.com', 'fitness54321', '2024-12-18 14:30:00'),
+(27, 'lixinhao27@yahoo.com', 'jumpdance234', '2024-12-17 11:00:00'),
+(28, 'zhoujiayi28@gmail.com', 'yoga4567', '2024-12-16 13:15:00'),
+(29, 'zhangzhiyao29@hotmail.com', 'boxing1234', '2024-12-15 10:45:00'),
+(30, 'lixiaoyi30@yahoo.com', 'weightlifting4321', '2024-12-14 08:30:00'),
+(31, 'yangziting31@gmail.com', 'outdoor5678', '2025-01-12 18:45:00'),
+(32, 'wangzihao32@hotmail.com', 'yoga7890', '2025-01-12 19:30:00');
+
+
+
+
+
 UPDATE member_auth SET member_password = '$2b$12$Fv.SV/04S5/Oc3zeyDeLHOu515QueVPkcMRkQExfVvOPE9lKGwddG' WHERE member_id = 1;
 UPDATE member_auth SET member_password = '$2b$12$lLuXtZlRWncq1xohn7KEw.59BJM1vXRx.4LdfUL3N9syrogzDAMGu' WHERE member_id = 2;
 UPDATE member_auth SET member_password = '$2b$12$V0IVgS45JcSGaio5kDsw.OKaTw1QvUg1VMqhxKpu.s6Yil8dRcHt2' WHERE member_id = 3;
