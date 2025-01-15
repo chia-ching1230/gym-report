@@ -28,9 +28,9 @@ $totalPages = ceil($totalRows / $perPage);
     td {
         overflow: hidden;
         /* 隱藏超出內容 */
-        text-overflow: ellipsis;
+        /* text-overflow: ellipsis; */
         /* 用省略號顯示溢出內容 */
-        white-space: nowrap;
+        /* white-space: nowrap; */
         /* 防止內容換行 */
     }
 </style>
