@@ -89,7 +89,7 @@ $totalPages = ceil($totalRows / $perPage);
                             <?= $v['updated_at'] ?>
                         </td>
 
-                        <td><a class="dropdown-item" href="gymAdmin-edit.php?member_id=<?= $v['member_id'] ?>">
+                        <td><a class="dropdown-item" href="gymAdmin-edit.php?admin_id=<?= $v['admin_id'] ?>">
                                 <i class="bx bx-edit-alt me-1"></i></a>
                         </td>
                         <td><a class="dropdown-item" href="javascript:" onclick="deleteOne(event)">
@@ -172,7 +172,7 @@ $totalPages = ceil($totalRows / $perPage);
         document.querySelector('#exampleModalLabel2').innerHTML = `是否要刪除編號為${admin_id}，姓名為${admin_name}的管理員`
         document.querySelector('#yesgo').addEventListener('click', function() {
             location.href = `gymAdmin
-            -del-api.php?member_id=${member_id}`
+            -del-api.php?admin_id=${admin_id}`
         })
     }
 </script>
