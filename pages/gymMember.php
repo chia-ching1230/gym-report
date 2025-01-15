@@ -28,9 +28,9 @@ $totalPages = ceil($totalRows / $perPage);
     td {
         overflow: hidden;
         /* 隱藏超出內容 */
-        text-overflow: ellipsis;
+        /* text-overflow: ellipsis; */
         /* 用省略號顯示溢出內容 */
-        white-space: nowrap;
+        /* white-space: nowrap; */
         /* 防止內容換行 */
     }
 </style>
@@ -121,9 +121,9 @@ $totalPages = ceil($totalRows / $perPage);
                         <td style="max-width: 200px" title="<?= htmlentities($v['address']) ?>">
                             <?= htmlentities($v['address']) ?>
                         </td>
-                        <td style="max-width: 150px" title="<?= $v['created_at'] ?>">
+                        <td class="text-wrap" style="max-width: 150px; font-size:12px;" title="<?= $v['created_at'] ?>">
                             <?= $v['created_at'] ?></td>
-                        <td style="max-width: 150px" title="<?= $v['updated_at'] ?>">
+                        <td class="text-wrap" style="max-width: 150px; font-size:12px;" title="<?= $v['updated_at'] ?>">
                             <?= $v['updated_at'] ?>
                         </td>
 
