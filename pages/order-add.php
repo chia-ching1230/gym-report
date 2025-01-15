@@ -45,11 +45,11 @@ $pageName = "order-add";
                 <div class="row">
                     <div class="col-sm-6">
                         <select id="self_pickup_store" class="form-select" name="self_pickup_store">
-                            <option value="0" selected="">健身房A</option>
-                            <option value="1">健身房B</option>
-                            <option value="2">健身房C</option>
-                            <option value="3">健身房D</option>
-                            <option value="4">健身房E</option>
+                            <option value="健身房A" selected="">健身房A</option>
+                            <option value="健身房B">健身房B</option>
+                            <option value="健身房C">健身房C</option>
+                            <option value="健身房D">健身房D</option>
+                            <option value="健身房E">健身房E</option>
                         </select>
                     </div>
                 </div>
@@ -62,8 +62,8 @@ $pageName = "order-add";
                 <div class="row">
                     <div class="col-sm-6">
                         <select id="payment_method" class="form-select" name="payment_method">
-                            <option value="0" selected="">現金</option>
-                            <option value="1">信用卡</option>
+                            <option value="現金" selected="">現金</option>
+                            <option value="信用卡">信用卡</option>
                         </select>
                     </div>
                 </div>
@@ -77,9 +77,9 @@ $pageName = "order-add";
                 <div class="row">
                     <div class="col-sm-6">
                         <select id="status" class="form-select" name="status">
-                            <option value="0" selected="">已完成</option>
-                            <option value="1">已取消</option>
-                            <option value="2">待處理</option>
+                            <option value="已完成" selected="">已完成</option>
+                            <option value="已取消">已取消</option>
+                            <option value="待處理">待處理</option>
                         </select>
                     </div>
                 </div>
