@@ -7,7 +7,7 @@ $pageName = "login";
 ?>
 <!-- html開始 -->
 <?php include __DIR__ . '/includes/html-header.php'; ?>
-<?php include __DIR__ . '/includes/html-sidebar.php'; ?>
+<?php include __DIR__ . '/includes/html-sidebar-1.php'; ?>
 <?php include __DIR__ . '/includes/html-layout-navbar.php'; ?>
 <?php include __DIR__ . '/includes/html-content wrapper-start.php'; ?>
 
@@ -102,7 +102,7 @@ $pageName = "login";
             if (!obj.success) {
                 myModal.show(); // 呈現 modal
             }else{
-                location.href="index_.php"
+                location.href="home-admin.php"
             }
             }).catch(console.warn);
         }
