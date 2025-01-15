@@ -23,7 +23,7 @@ if (empty($r)) {
 ?>
 <?php include __DIR__ . '/includes/html-header.php'; ?>
 <?php include __DIR__ . '/includes/html-sidebar.php'; ?>
-<?php include __DIR__ . '/includes/html-layout-navbar.php'; ?>
+<?php include __DIR__ . '/includes/html-layout-navbar-admin.php'; ?>
 <style>
     form .mb-4 .form-text {
         display: none;

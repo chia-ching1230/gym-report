@@ -36,7 +36,7 @@ $totalPages = ceil($totalRows / $perPage);
     }
 </style>
 <?php include __DIR__ . '/includes/html-sidebar.php'; ?>
-<?php include __DIR__ . '/includes/html-layout-navbar.php'; ?>
+<?php include __DIR__ . '/includes/html-layout-navbar-admin.php'; ?>
 <?php include __DIR__ . '/includes/html-content wrapper-start.php'; ?>
 <div class="card">
     <div class="row">
