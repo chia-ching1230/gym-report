@@ -171,8 +171,7 @@ $totalPages = ceil($totalRows / $perPage);
         delModal.show()
         document.querySelector('#exampleModalLabel2').innerHTML = `是否要刪除編號為${admin_id}，姓名為${admin_name}的管理員`
         document.querySelector('#yesgo').addEventListener('click', function() {
-            location.href = `gymAdmin
-            -del-api.php?admin_id=${admin_id}`
+            location.href = `gymAdmin-del-api.php?admin_id=${admin_id}`
         })
     }
 </script>
