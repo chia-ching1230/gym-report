@@ -108,12 +108,12 @@ if (empty($row)){
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">新增結果</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">修改結果</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="alert alert-success" role="alert">
-                    預約新增成功
+                    預約修改成功
                 </div>
             </div>
             <div class="modal-footer">

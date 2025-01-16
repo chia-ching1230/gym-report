@@ -7,36 +7,63 @@ $pageName = "login";
 ?>
 <!-- html開始 -->
 <?php include __DIR__ . '/includes/html-header.php'; ?>
+<style>
+        .login-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-top: 3rem;
+            max-width: 400px;
+        }
+        .login-title {
+            color:rgb(12, 13, 13);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+        .form-control {
+            border-radius: 10px;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid #e0e0e0;
+        }
+        .btn-login {
+            background: linear-gradient(to right,rgb(67, 86, 252) 0%,rgb(106, 67, 247) 100%);
+            border: none;
+            border-radius: 10px;
+            padding: 0.8rem;
+            width: 100%;
+            color: white;
+            font-weight: 500;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 <?php include __DIR__ . '/includes/html-sidebar-1.php'; ?>
 <?php include __DIR__ . '/includes/html-layout-navbar.php'; ?>
 <?php include __DIR__ . '/includes/html-content wrapper-start.php'; ?>
-
-    <div class="row  m-5 d-flex justify-content-center">
-        <div class="col-4">
-            <div class="card "style="height: 300px;" >
-                <div class="card-body d-flex justify-content-center ">
-                    <h5 class="card-title " >歡迎登入</h5>
-                </div>
-            </div>
-        </div>
-        <div class="col-7">
-            <div class="card"style="height: 300px;" >
-                <div class="card-body">
-                    <h5 class="card-title">管理員/教練登入</h5>
-                    <hr>
-                    <form onsubmit="sendData(event)" >
-                    <div class="mb-3">
-                        <label for="email" class="form-label" required>電子郵件</label>
-                        <input type="email" class="form-control" id="email" name="email" >
-                        <div class="form-text"></div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">密碼</label>
-                        <input type="password" class="form-control" id="password" name="admin_password">
-                        <div class="form-text"></div>
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary">登入</button>
+<div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="login-container">
+                    <h2 class="login-title">管理員/教練登入</h2>
+                    <form onsubmit="sendData(event)">
+                        <div class="mb-3">
+                            <label class="form-label">電子郵件</label>
+                            <input type="email" class="form-control" id="email" name="email" 
+                                   placeholder="請輸入您的電子郵件" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">密碼</label>
+                            <input type="password" class="form-control" id="password" 
+                                   name="admin_password" placeholder="請輸入密碼" required>
+                        </div>
+                        <button type="submit" class="btn btn-login">登入系統</button>
                     </form>
                 </div>
             </div>
