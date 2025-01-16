@@ -7,7 +7,7 @@ $output = [
     'bodyData' => $_POST, 
     'code' =>0, 
     'error'=>'', 
-    'lastInsertId' =>0,
+    'lastInsertId' =>0
 ];
 $sql = "INSERT INTO `Videos`
 (`title`, `description`, `video_url`, `category`,`status`) 
@@ -19,7 +19,7 @@ $stmt -> execute([
     $_POST['title'],
     $_POST['description'],
     $_POST['video_url'],
-    $_POST['category'],
+    $_POST['category_name'],
     $_POST['status']
 ]);
 $output['success'] = !!$stmt->rowCount();

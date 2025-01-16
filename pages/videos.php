@@ -28,7 +28,7 @@ if($keyword){
 
 $t_sql = "SELECT count(*) FROM Videos $where";
 $totalRows = $pdo->query($t_sql)->fetch(PDO::FETCH_NUM)[0]; 
-
+$totalPages = ceil($totalRows/$perPage);
 $rows = []; # 設定預設值
 // if ($totalRows > 0) {
 //   if ($page > $totalPages) {
@@ -47,7 +47,7 @@ if($totalRows>0){
   $rows = $pdo->query($sql)->fetchAll();
 }
 
-$totalPages = ceil($totalRows/$perPage);
+
 
 $all_sql="SELECT * FROM Videos WHERE videos_id = $videos_id";
 $r = $pdo->query($all_sql)->fetch();

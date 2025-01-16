@@ -12,23 +12,24 @@ $pageName = "videos-add";
     <div class="card mb-6">
       <div class="card-header d-flex align-items-center justify-content-between">
         <h5 class="mb-0">新增影片</h5> 
-        <small class="text-muted float-end"> <a href="./videos.php" class="nav-link">回到影片列表</a>
-        </small>
+        <small class="text-muted float-end border border-1 p-3 fs-6 rounded" style="background-color: #696cff;">
+  <a href="videos.php" class="nav-link link-light">回到影片列表</a>
+</small>
       </div>
       <div class="card-body">
         <form onsubmit="sendData(event)">
-          <div class="row mb-6">
-            <label class="col-sm-2 col-form-label" for="basic-default-title">標題</label>
+          <div class="row mb-6 d-flex">
+            <label class="col-sm-2 col-form-label" for="basic-default-title"><i class="fa-solid fa-pen m-1"></i>標題(必填)</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="basic-default-title" placeholder="title" name="title">
+              <input type="text" class="form-control" id="basic-default-title" placeholder="例:伏地挺身挑戰" name="title">
               <div id="titleError" class="color-danger my-2"></div>
             </div>
           </div>
           <div class="row mb-2">
-            <label class="col-sm-2 col-form-label" for="basic-default-description">描述</label>
+            <label class="col-sm-2 col-form-label" for="basic-default-description"><i class="fa-solid fa-pen m-1"></i>描述(必填)</label>
             <div class="col-sm-10">
-              <textarea id="basic-default-description" class="form-control" placeholder="Hi, Do you have a moment to talk Joe?" aria-label="Hi, Do you have a moment to talk Joe?" aria-describedby="basic-icon-default-message2" rows="3" name="description" ></textarea>
-              <div id="descriptionError"></div>
+              <textarea id="basic-default-description" class="form-control" placeholder="例:訓練胸部與三頭肌的經典動作" aria-label="Hi, Do you have a moment to talk Joe?" aria-describedby="basic-icon-default-message2" rows="3" name="description" ></textarea>
+              <div id="descriptionError" class="color-danger my-2"></div>
             </div>
           </div>
           <div class="row" >
@@ -38,13 +39,14 @@ $pageName = "videos-add";
           </div>
 
           <div class="row mb-6">
-            <label class="col-sm-2 col-form-label" for="basic-default-video_url">影片連結</label>
+            <label class="col-sm-2 col-form-label" for="basic-default-video_url"><i class="fa-solid fa-pen m-1"></i>影片連結(必填)</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="basic-default-video_url" placeholder="video_url" name="video_url">
+              <input type="text" class="form-control" id="basic-default-video_url" placeholder="例:https://example.com/video1" name="video_url">
+              <div id="video_url_Error" class="color-danger my-2"></div>
             </div>
           </div>
           <div class="row mb-6">
-            <label class="col-sm-2 col-form-label" for="basic-default-checkbox" >影片分類</label >
+            <label class="col-sm-2 col-form-label" for="basic-default-checkbox" ><i class="fa-solid fa-pen m-1"></i>影片分類</label >
             <div class="col-sm-10">
                 <div class="row">
                     <div class="col-sm-6">
@@ -58,7 +60,7 @@ $pageName = "videos-add";
             </div>
           </div>
           <div class="row mb-6">
-            <label class="col-sm-2 col-form-label" for="basic-default-checkbox" >發布狀態</label >
+            <label class="col-sm-2 col-form-label" for="basic-default-checkbox" ><i class="fa-solid fa-pen m-1"></i>發布狀態</label >
             <div class="col-sm-10">
                 <div class="row">
                     <div class="col-sm-6">
@@ -110,6 +112,7 @@ $pageName = "videos-add";
 <script>
     const title = document.querySelector('#basic-default-title')
     const description = document.querySelector('#basic-default-description')
+    const video_url = document.querySelector('#basic-default-video_url')
     const textCount = document.querySelector('#textCount')
     
     description.addEventListener('input', () => {
@@ -119,19 +122,26 @@ $pageName = "videos-add";
     const sendData = e=>{
         e.preventDefault();
         description.classList.remove('btn-outline-danger')
+        title.classList.remove('btn-outline-danger')
+        video_url.classList.remove('btn-outline-danger')
         textCount.classList.remove('btn-outline-danger')
         
         let isPass = true 
 
-        if(title.value.length <= 5){
+        if(title.value.length <= 0){
             isPass=false;
-            document.querySelector('#titleError').innerHTML ='標題不能小於5個字'
+            document.querySelector('#titleError').innerHTML ='此欄為必填'
             title.classList.add('btn-outline-danger')
         }
-        if(description.value.length <= 5){
+        if(description.value.length <= 0){
             isPass=false;
-            document.querySelector('#descriptionError').innerHTML ='內文不能小於5個字'
+            document.querySelector('#descriptionError').innerHTML ='此欄為必填'
             description.classList.add('btn-outline-danger')
+        }
+        if(video_url.value.length <= 0){
+            isPass=false;
+            document.querySelector('#video_url_Error').innerHTML ='此欄為必填'
+            video_url.classList.add('btn-outline-danger')
         }
 
         
