@@ -32,7 +32,7 @@ $pageName = "login";
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">密碼</label>
-                        <input type="text" class="form-control" id="password" name="admin_password">
+                        <input type="password" class="form-control" id="password" name="admin_password">
                         <div class="form-text"></div>
                     </div>
                     

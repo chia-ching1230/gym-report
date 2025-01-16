@@ -76,7 +76,7 @@ if (! isset($pageName)) {
       <span class="menu-header-text">home</span>
     </li>
     <li class="menu-item <?= $pageName =='home' ? 'active' : '' ?>">
-      <a href="home.php" target="_blank" class="menu-link   ">
+      <a href="home-admin.php" target="_blank" class="menu-link   ">
         <i class="menu-icon fa-solid fa-house fa-2xs"></i>
         <div class="text-truncate" data-i18n="Support">首頁</div>
       </a>
@@ -309,7 +309,7 @@ if (! isset($pageName)) {
           </a>
         </li>
         <li class="menu-item">
-          <a href="products-add.php" class="menu-link">
+          <a href="products_add.php" class="menu-link">
             <div class="text-truncate" data-i18n="Analytics">新增產品列表</div>
           </a>
         </li>
