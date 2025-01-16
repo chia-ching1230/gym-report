@@ -63,7 +63,7 @@ $totalPages = ceil($totalRows / $perPage);
                     <th>權限</th>
                     <th>創建時間</th>
                     <th>更新時間</th>
-                    <th>編輯</th>
+                    <th>檢視</th>
                     <th>刪除</th>
                 </tr>
             </thead>
@@ -89,8 +89,8 @@ $totalPages = ceil($totalRows / $perPage);
                             <?= $v['updated_at'] ?>
                         </td>
 
-                        <td><a class="dropdown-item" href="gymAdmin-edit.php?admin_id=<?= $v['admin_id'] ?>">
-                                <i class="bx bx-edit-alt me-1"></i></a>
+                        <td><a class="dropdown-item" href="gymAdmin-detail.php?admin_id=<?= $v['admin_id'] ?>">
+                                <i class="fa-solid fa-list"></i></a>
                         </td>
                         <td><a class="dropdown-item" href="javascript:" onclick="deleteOne(event)">
                                 <i class="bx bx-trash me-1"></i></a>
