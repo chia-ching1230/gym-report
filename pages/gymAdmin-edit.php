@@ -5,7 +5,7 @@ $pageName = "gymAdmin-edit";
 $admin_id = empty($_GET['admin_id']) ? 0 : intval($_GET['admin_id']);
 
 if (empty($admin_id)) {
-    header('Location: gymAdmin.php');
+    header('Location: gymAdmin-detail.php');
     exit;
 }
 
@@ -13,7 +13,7 @@ $sql = "SELECT * FROM gym_admin WHERE admin_id = $admin_id";
 
 $r = $pdo->query($sql)->fetch();
 if (empty($r)) {
-    header('Location: gymAdmin.php');
+    header('Location: gymAdmin-detail.php');
     exit;
 }
 
@@ -74,7 +74,6 @@ if (empty($r)) {
 
                 <div class="mt-6">
                     <button type="submit" class="btn btn-primary me-3">確定</button>
-                    <button type="reset" class="btn btn-outline-secondary">重設</button>
                 </div>
             </form>
         </div>
@@ -131,9 +130,10 @@ if (empty($r)) {
 <?php include __DIR__ . '/includes/html-script.php'; ?>
 
 <script>
+    const myModal = new bootstrap.Modal('#success-modal')
+    const noEditModal = new bootstrap.Modal('#no-edit-modal')
     const email = document.querySelector("#basic-default-email")
     const name = document.querySelector('#basic-default-name')
-
     const sendData = e => {
         e.preventDefault();
         email.classList.remove('btn-outline-danger')
@@ -164,7 +164,6 @@ if (empty($r)) {
 
         if (isPass) {
             const fd = new FormData(document.forms[0]);
-            const myModal = new bootstrap.Modal('#success-modal')
             fetch(`gymAdmin-edit-api.php`, {
                     method: 'POST',
                     body: fd
@@ -176,6 +175,8 @@ if (empty($r)) {
                     }
                     if (obj.success) {
                         myModal.show()
+                    } else {
+                        noEditModal.show()
                     }
                 }).catch(console.warn);
         }
