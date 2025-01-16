@@ -1,20 +1,8 @@
 <?php require __DIR__ . '/includes/init.php';?>
 
-
-<?php include __DIR__ . '/includes/html-header.php'; ?>
-<?php include __DIR__ . '/includes/html-sidebar.php'; ?>
-<?php include __DIR__ . '/includes/html-layout-navbar-admin.php'; ?>
-<?php include __DIR__ . '/includes/html-content wrapper-start.php'; ?>
-
 <style>
   .custom-select {
-    /* appearance: none;  */
-    /* -moz-appearance: none;  */
-    /* -webkit-appearance: none; */
-    /* background: url('data:image/svg+xml;charset=UTF-8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"%3E%3Cpath fill="%23696cff" d="M2 0L0 2h4z" /%3E%3C/svg%3E') no-repeat right center; 
-    background-size: 12px 12px; */
     border: 0; 
-    /* padding-right: 20px;  */
     cursor: pointer; /* 顯示手型游標 */
     width: auto; /* 自適應寬度 */
     background-color: transparent; /* 背景透明 */
@@ -26,9 +14,7 @@
     font-size: 18px; /* 修改表頭的字體大小 */
   }
 
-  /* .table thead tr th{
-    text-align:center;
-  } */
+
 .pagination .page-link {
   border-radius: 50%;
   width: 40px;
@@ -39,15 +25,6 @@
   padding: 0;
 }
 
-/* 縮短表格行高 */
-/* .table tbody tr {
-  line-height: 1.5;
-  font-size: 17px;
-} */
-
-/* .table tbody tr td {
-  padding: 10px 10px;
-} */
 </style>
 
 
