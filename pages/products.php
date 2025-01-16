@@ -35,6 +35,11 @@
   height: 48px !important;  /* 統一設定高度 */
   /* font-size: 20px; */
 }
+.btn-sm{
+  border:none;
+  border-radius:10px;
+  height:40px !important;
+}
 </style>
 
 
@@ -131,8 +136,9 @@ $rows = $pdo->query($sql)->fetchAll(); # 取得該分頁的資料
   </div>
 <div class="container">
  <div class="row mt-4">
-    <div class="col d-flex justify-content-between p-4" style= "height:70px;">
-    <button class="btn btn-danger btn-sm " id="delete-selected">刪除選取項目</button>
+    <div class="col d-flex justify-content-between p-4" >
+    <!-- style= "height:70px;" -->
+    <button class="btn-sm " id="delete-selected">刪除選取項目</button>
       <!-- 搜尋 -->
       <div class="col-lg-3 me-5  d-flex  justify-content-end">
         <form class="d-flex" >
