@@ -158,7 +158,7 @@ $rows = $pdo->query($sql)->fetchAll(); # 取得該分頁的資料
             <th class="px-4 py-1 fw-bold ">
               <input type="checkbox" id="select-all" />
             </th>
-            <th class="px-4 py-1 fw-bold text-top">#id</th>
+            <th class="px-4 py-1 fw-bold text-top">id</th>
             <th class="px-4 py-1 fw-bold ">編號</th>
             <th class="px-4 py-1 fw-bold ">品項</th>
             <th class="px-4 py-1 fw-bold ">器材描述</th>
@@ -197,8 +197,8 @@ $rows = $pdo->query($sql)->fetchAll(); # 取得該分頁的資料
             </th>
             <th class="px-4 py-1 fw-bold ">圖片連結</th>
             <th class="px-4 py-1 fw-bold ">建立時間</th>
-            <th class="px-4 py-1 fw-bold ">#</i></th>
-            <th class="px-4 py-1 fw-bold ">#</th>
+            <th class="px-4 py-1 fw-bold "><i class="bx bx-edit-alt me-1"></i></th>
+            <th class="px-4 py-1 fw-bold "><i class="bx bx-trash me-1"></i></th>
           </tr>
         </thead>
         <tbody class="table-border-bottom-0">
