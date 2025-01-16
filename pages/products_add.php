@@ -171,9 +171,9 @@ $pageName = "products_add";
             document.querySelector('#priceError').innerHTML ='此欄為必填'
             price.classList.add('btn-outline-danger')
         }
-        if(url.value.length <= 10){
+        if(url.value.length <= 5){
             isPass=false;
-            document.querySelector('#urlError').innerHTML ='至少需填入10個字元'
+            document.querySelector('#urlError').innerHTML ='至少需填入5個字元'
             url.classList.add('btn-outline-danger')
         }
 
