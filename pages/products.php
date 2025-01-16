@@ -114,7 +114,7 @@ $rows = $pdo->query($sql)->fetchAll(); # 取得該分頁的資料
 
 <?php include __DIR__ . '/includes/html-header.php'; ?>
 <?php include __DIR__ . '/includes/html-sidebar.php'; ?>
-<?php include __DIR__ . '/includes/html-layout-navbar.php'; ?>
+<?php include __DIR__ . '/includes/html-layout-navbar-admin.php'; ?>
 <?php include __DIR__ . '/includes/html-content wrapper-start.php'; ?>
 
 <div class="card pb-5">
@@ -185,7 +185,7 @@ $rows = $pdo->query($sql)->fetchAll(); # 取得該分頁的資料
             <th class="px-4 py-1 fw-bold ">重量(公斤)</th>
             <th class="px-4 py-1 fw-bold ">
             <form class="">
-            <input type="hidden" name="category" value="<?= htmlentities($_GET['category'] ?? '') ?>"> <!-- 新增隱藏欄位 -->
+              <input type="hidden" name="category" value="<?= htmlentities($_GET['category'] ?? '') ?>"> <!-- 新增隱藏欄位 -->
               <select class="custom-select " name="sort_price" onchange="this.form.submit()">
               
                 <option value="">價格</option>
