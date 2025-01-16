@@ -6,13 +6,12 @@
     cursor: pointer; /* 顯示手型游標 */
     width: auto; /* 自適應寬度 */
     background-color: transparent; /* 背景透明 */
+ 
   }
   table {
     font-size: 16px; /* 修改整個表格的字體大小 */
   }
-  th {
-    font-size: 18px; /* 修改表頭的字體大小 */
-  }
+
 
 
 .pagination .page-link {
@@ -25,6 +24,17 @@
   padding: 0;
 }
 
+.table td {
+  white-space: nowrap;
+  min-width: 95px; /* 設定最小寬度 */
+}
+.table td, .table th {
+  padding: 12px 16px !important;  /* 統一設定內距 */
+  line-height: 15px !important;   /* 統一設定行高 */
+  vertical-align: top !important; /* 垂直置中對齊 */
+  height: 48px !important;  /* 統一設定高度 */
+  /* font-size: 20px; */
+}
 </style>
 
 
@@ -121,14 +131,16 @@ $rows = $pdo->query($sql)->fetchAll(); # 取得該分頁的資料
   </div>
 <div class="container">
  <div class="row mt-4">
-    <div class="col d-flex justify-content-between p-4">
+    <div class="col d-flex justify-content-between p-4" style= "height:70px;">
     <button class="btn btn-danger btn-sm " id="delete-selected">刪除選取項目</button>
       <!-- 搜尋 -->
-      <div class="col-lg-3 me-5  d-flex align-items-center justify-content-end">
-        <form class="d-flex" style= "height:20px;">
+      <div class="col-lg-3 me-5  d-flex  justify-content-end">
+        <form class="d-flex" >
+        <!-- align-items-center -->
+        <!-- style= "height:20px;" -->
             <div class="input-group">
                   <button class="input-group-text">
-                    <i class="tf-icons bx bx-search fs-4"></i>
+                    <i class="tf-icons bx bx-search"></i>
                   </button>
               <input type="search" class="form-control " placeholder="Search..." name="keyword" 
               value="<?=empty($_GET['keyword'])?'':htmlentities($_GET['keyword'])?>" >
@@ -136,27 +148,28 @@ $rows = $pdo->query($sql)->fetchAll(); # 取得該分頁的資料
         </form>
       </div>
     </div>
-  </div>
+  
   <!-- 表格 -->
-  <div class="row">
-    <div class="col table-responsive text-nowrap">
-      <table class="table  table-hover mb-4">
+  <!-- <div class="row"> -->
+  <div class="table-responsive" style="width: 100%; overflow-x: auto;">
+  <table class="table table-hover mb-4" style="min-width: 1500px;">
         <thead>
           <tr>
-            <th class="p-4 fw-bold fs-6">
+            <th class="px-4 py-1 fw-bold ">
               <input type="checkbox" id="select-all" />
             </th>
-            <th class="p-4 fw-bold  fs-6">#id</th>
-            <th class="p-4 fw-bold  fs-6">編號</th>
-            <th class="p-4 fw-bold  fs-6">品項</th>
-            <th class="p-4 fw-bold  fs-6">器材描述</th>
-            <th class="p-4 fw-bold  fs-6">
+            <th class="px-4 py-1 fw-bold text-top">#id</th>
+            <th class="px-4 py-1 fw-bold ">編號</th>
+            <th class="px-4 py-1 fw-bold ">品項</th>
+            <th class="px-4 py-1 fw-bold ">器材描述</th>
+            <th class="px-4 py-1 fw-bold ">
             <form class="d-inline-block" >
+            <input type="hidden" name="keyword" value="<?= htmlentities($_GET['keyword'] ?? '') ?>"> <!-- 新增隱藏欄位 -->
             <select class="custom-select" 
                     name="category" 
                     onchange="this.form.submit()" 
                     style="width: auto; display: inline-block; background: none;">
-              <option value="" class=" fs-6">器材種類</option>
+              <option value="" class=" ">器材種類</option>
               <!-- 動態生成種類選項 -->
               <?php
               $categories = $pdo->query("SELECT DISTINCT category_name FROM products")->fetchAll();
@@ -169,10 +182,12 @@ $rows = $pdo->query($sql)->fetchAll(); # 取得該分頁的資料
             </select>
           </form>
             </th>
-            <th class="p-4  fw-bold  fs-6">重量(公斤)</th>
-            <th class="p-4  fw-bold  fs-6">
-            <form class="d-inline-block">
-              <select class="custom-select" name="sort_price" onchange="this.form.submit()">
+            <th class="px-4 py-1 fw-bold ">重量(公斤)</th>
+            <th class="px-4 py-1 fw-bold ">
+            <form class="">
+            <input type="hidden" name="category" value="<?= htmlentities($_GET['category'] ?? '') ?>"> <!-- 新增隱藏欄位 -->
+              <select class="custom-select " name="sort_price" onchange="this.form.submit()">
+              
                 <option value="">價格</option>
                 <option value="asc" <?= ($_GET['sort_price'] ?? '') == 'asc' ? 'selected' : '' ?>>價格--由低到高</option>
                 <option value="desc" <?= ($_GET['sort_price'] ?? '') == 'desc' ? 'selected' : '' ?>>價格--由高到低</option>
@@ -180,31 +195,31 @@ $rows = $pdo->query($sql)->fetchAll(); # 取得該分頁的資料
               </select>
             </form>
             </th>
-            <th class="p-4  fw-bold  fs-6">圖片連結</th>
-            <th class="p-4  fw-bold  fs-6">建立時間</th>
-            <th class="p-4  fw-bold  fs-6">#</i></th>
-            <th class="p-4  fw-bold  fs-6">#</th>
+            <th class="px-4 py-1 fw-bold ">圖片連結</th>
+            <th class="px-4 py-1 fw-bold ">建立時間</th>
+            <th class="px-4 py-1 fw-bold ">#</i></th>
+            <th class="px-4 py-1 fw-bold ">#</th>
           </tr>
         </thead>
         <tbody class="table-border-bottom-0">
           <?php foreach ($rows as $r): ?>
             <tr>
-              <td class="p-4">
-                <input type="checkbox" class="row-checkbox" value="<?= $r['product_id'] ?>" />
+              <td class="p-2">
+                <input type="checkbox" class="row-checkbox " value="<?= $r['product_id'] ?>" />
               </td>
-              <td class="p-4"><?= $r['product_id'] ?></td>
-              <td class="p-4"><?= $r['product_code'] ?></td>
-              <td class="p-4"><?= $r['name'] ?></td>
-              <td class="p-4"><?= $r['description'] ?></td>
-              <td class="p-4"><?= $r['category_name'] ?></td>
-              <td class="p-4"><?= $r['weight'] ?></td>
-              <td class="p-4"><?= $r['base_price'] ?></td>
-              <td class="p-4"><?= $r['image_url'] ?></td>
-              <td class="p-4"><?= $r['created_at'] ?></td>
-              <td class="p-4"><a class="dropdown-item" href="products_edit.php?product_id=<?= $r['product_id'] ?>">
+              <td class="p-2"><?= $r['product_id'] ?></td>
+              <td class="p-2"><?= $r['product_code'] ?></td>
+              <td class="p-2"><?= $r['name'] ?></td>
+              <td class="p-2"><?= $r['description'] ?></td>
+              <td class="p-2"><?= $r['category_name'] ?></td>
+              <td class="p-2"><?= $r['weight'] ?></td>
+              <td class="p-2"><?= $r['base_price'] ?></td>
+              <td class="p-2"><?= $r['image_url'] ?></td>
+              <td class="p-2"><?= $r['created_at'] ?></td>
+              <td class="p-2"><a class="dropdown-item" href="products_edit.php?product_id=<?= $r['product_id'] ?>">
                 <i class="bx bx-edit-alt me-1"></i></a>
               </td>
-              <td class="p-4"><a class="dropdown-item"  href="javascript:" onclick="deleteOne(event)">
+              <td class="p-2"><a class="dropdown-item"  href="javascript:" onclick="deleteOne(event)">
                 <i class="bx bx-trash me-1"></i></a>
               </td>
             </tr>
@@ -255,8 +270,7 @@ $rows = $pdo->query($sql)->fetchAll(); # 取得該分頁的資料
           </li>
         </ul>
       </nav>
-    </div>
-  </div> 
+
 
 <!-- modal delete -->
 <div class="modal fade" tabindex="-1" style="display: none;" aria-hidden="true" id="delete-modal">
